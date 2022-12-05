@@ -1,0 +1,33 @@
+*{
+    padding: none;
+    margin: none;
+  }
+
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+    list-style: none;
+    position: relative;
+    padding: .5rem;
+    height: 2rem
+}
+
+.logo{
+    width: 1.5rem;
+    position:absolute;
+}
+
+.navbar__item {
+    list-style-type: none;
+
+}
+
+.navbar__logout {
+    margin-left: auto;
+    
+}
+
+.navbar_link_image{
+    width: 1.5rem;
+}

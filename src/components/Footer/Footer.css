@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+}
+
+.footer-container{
+    background-color: black;
+    color: white;
+    list-style: none;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.footer-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.socialMedia_list{
+    display: flex;
+}
