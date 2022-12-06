@@ -4,6 +4,12 @@
     margin: none;
   }
 
+.nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;
@@ -11,6 +17,7 @@
     list-style: none;
     padding: .5rem;
     height: 2rem;
+    transition: 500ms ease-in-out;
 }
 
 .logo{
@@ -47,6 +54,7 @@
 .btnDark{
     border: none;
     background-color: transparent;
+    padding: 25px;
 }
 
 .toggle{
@@ -58,41 +66,42 @@
     align-items: center;
 }
 
-.btnDark{
-    padding: 25px;
-}
-
 .bars{
     font-size: 1.5rem;
+    transition: 500ms ease-in-out;
 }
 
 .nav_menu_container{
-    display: flex;
-    justify-content: end;
-    text-decoration: none;
+    display: inline;
+    position: fixed;
+    right: 0;
+    transition: 500ms ease-in-out;
 }
 
 .nav_menu{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
     width: 11rem;
-    border: 1px black solid;
-    padding:1rem 1rem;
-    /* transform: translateX(100%); */
-    transition: ease-out;
-}
-
-.nav_menu.active{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 11rem;
-    border: 1px black solid;
-    padding:1rem;
-    transition: ease-out;
-}
-
-.nav-text{
     padding: 1rem;
+    transform: translateX(100%);
+    transition: 500ms ease-in-out;
 }
+
+.nav_menu_active{
+    width: 11rem;
+    padding: 1rem;
+    transition: 500ms ease-in-out;
+}
+
+.nav_menu_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 500ms ease-in-out;
+}
+
+.nav_menu_content{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    padding: 10px;
+    transition: 500ms ease-in-out;
+} 

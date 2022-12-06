@@ -33,3 +33,10 @@ body{
   color:var(--color-dark);
 }
 
+.btn{
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  margin: 1rem;
+  transition: 500ms ease-in-out;
+}
