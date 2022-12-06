@@ -7,6 +7,7 @@
     color: white;
     list-style: none;
     text-decoration: none;
+    bottom: 0%;
 }
 
 ul {
@@ -20,4 +21,8 @@ ul {
 
 .socialMedia_list{
     display: flex;
+}
+
+.socialMedia_list_item{
+    padding: 1rem;
 }

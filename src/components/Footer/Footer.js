@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { FaFacebookSquare, FaInstagramSquare, FaLinkedinSquare, FaTwitterSquare} from "react-icons/fa"
 import "./Footer.css"
 
 export const Footer = () => {
@@ -19,25 +20,25 @@ export const Footer = () => {
                 </li>
             </ul>
         </div>
-        <label forhtml="socialMedia">Connect</label> 
+        <label forhtml="socialMedia">Connect:</label> 
         <ul className="socialMedia_list">
             <li className="socialMedia_list_item">
-                Instagram
-                <Link>
-                    <svg src="../../icons/insta_white.svg"/>
+                <Link to="http://www.instagram.com/roebucksruin">
+                    <FaInstagramSquare style={{color: "white"}} />
                 </Link>
+                <div>Instagram</div>
             </li>
             <li className="socialMedia_list_item">
+                <Link>
+                    <FaTwitterSquare style={{color: "white"}} />
+                </Link>
                 <div>Twitter</div>
-                <Link>
-                    <svg src="../../icons/twitter_white.svg"/>
-                </Link>
             </li>
             <li className="socialMedia_list_item">
-                <div>Facebook</div>
                 <Link>
-                    <svg src="../../icons/facebook_white.svg"/>
+                    <FaFacebookSquare style={{color: "white"}} />
                 </Link>
+                <div>Facebook</div>
             </li>
         </ul>
     </footer>)
