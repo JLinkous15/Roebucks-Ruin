@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom"
-import { FaBars } from "react-icons/fa";
 import "./NavBar.css"
 import "../../index.css"
+import { Link, useNavigate } from "react-router-dom"
+import { BiX, BiMenu } from "react-icons/bi";
 import { NavBarData_User } from "./NavBarData";
 import { useState } from "react";
 
@@ -13,26 +13,20 @@ export const NavBar = ({setTheme, theme}) => {
         <div className="nav">
             <ul className={`navbar ${theme?"dark":"light"}`}>
                 <li className="navbar_item">
-                    <Link className="navbar_link" to="/"><img className="navbar_image logo" alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
+                    <Link className="navbar_link" to="/"><img className={theme?"logo_light":"logo_dark"} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
                 </li>
                 <div className="navbar_item right">
-                    {theme?
-                        <button className="btnDark"
-                        onClick={(e)=>{setTheme(!theme)}}>
-                            <img className="navbar_image toggle" 
-                            src="../../icons/darkmode_dark.svg" 
-                            alt="moon" />
-                        </button>:
-                        <button className="btnDark"
-                        onClick={(e)=>{setTheme(!theme)}}>
-                            <img className="navbar_image toggle"
-                            src="../../icons/darkmode_light.svg"
-                            alt="sun" />
-                        </button>
-                    }
-                <li className="navbar_bars">
-                    <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{setHamburger(!hamburger)}}><FaBars /></Link>
-                </li>
+                    <button className="btnDark"
+                    onClick={(e)=>{setTheme(!theme)}}>
+                        <img className={`navbar_image toggle${theme?"light":"dark"}`} 
+                        src={theme?"../../icons/darkmode_dark.svg":"../../icons/darkmode_light.svg"} 
+                        alt="moon" style={theme?{}:{}}/>
+                    </button>
+                    <li className="navbar_bars">
+                        <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{setHamburger(!hamburger)}}>
+                            {hamburger?<BiX />:<BiMenu />}
+                        </Link>
+                    </li>
                 </div>
             </ul>
             <div className="nav_menu_container">
@@ -43,7 +37,7 @@ export const NavBar = ({setTheme, theme}) => {
                                     <li className="nav_menu_content" key={index}>
                                         <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path} 
                                         onClick={()=>{setHamburger(!hamburger)}}>
-                                            {listItem.icon} {listItem.title}
+                                            <div className="menuItem">{listItem.icon}{listItem.title}</div>
                                         </Link>
                                     </li>
                                 )

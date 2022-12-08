@@ -30,12 +30,15 @@ export const Login = () => {
 
     return (
         <main className="container--login">
+                    <img alt="RR" src="../../icons/Roebucksruin_Bug.svg" className="logo"/>
+                    <div className="title">
+                        <h1>Roebuck's Ruin</h1>
+                        <h2>an Olive-Free Zone</h2>
+                    </div>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1></h1>
-                    <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                    <fieldset className="login--fieldset">
+                        <label className="inputLable" htmlFor="inputEmail"> Email address </label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
@@ -43,7 +46,7 @@ export const Login = () => {
                             placeholder="Email address"
                             required autoFocus />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="login--fieldset">
                         <button className="btn" type="submit">
                             Sign in
                         </button>

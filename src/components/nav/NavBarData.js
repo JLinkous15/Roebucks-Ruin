@@ -2,6 +2,11 @@ import { FaAngleLeft, FaBookOpen, FaCalculator, FaCocktail, FaGlassMartiniAlt, F
 
 export const NavBarData_User = [
     {
+        title: `Home`,
+        path: `/`,
+        icon: <FaHome/>,
+        cName: `nav-text`
+    },{
         title: `Profile`,
         path: `/profile`,
         icon: <FaIdCard/>,

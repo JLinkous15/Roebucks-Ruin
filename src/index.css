@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;300;500;700;800&display=swap');
 
 :root{
-  --background-light: #fff;
-  --background-dark: #222;
-  --color-light: #000;
-  --color-dark: #fff;
+  --background-light: rgb(225, 225, 225);
+  --background-dark: rgb(34, 34, 34);
+  --color-light: rgb(34, 34, 34);
+  --color-dark: rgb(225, 225, 225);
 }
 
 body{
@@ -13,14 +13,14 @@ body{
 
 }
 
-.navbar {
+/* .navbar {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   list-style: none;
   padding: .5rem;
   height: 2rem;
-}
+} */
 
 .light{
   background-color: var(--background-light);
@@ -33,10 +33,41 @@ body{
   color:var(--color-dark);
 }
 
+h1{
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 2rem;
+}
+
 .btn{
   padding: .5rem 1rem;
   border-radius: 1rem;
   font-weight: 700;
   margin: 1rem;
   transition: 500ms ease-in-out;
+}
+
+.componentContainer{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  padding: 100px 45px 205px 45px;
+}
+
+fieldset{
+  border: none;
+}
+
+input{
+  background-color: #fff;
+  text-align: center;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+}
+
+.spacer{
+  height: 83px;
 }
