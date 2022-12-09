@@ -7,6 +7,11 @@
   --color-dark: rgb(225, 225, 225);
 }
 
+*{
+  padding: 0;
+  margin: 0;
+}
+
 body{
   font-family: 'Sora', sans-serif;
   color: var(--color-light);
@@ -25,12 +30,14 @@ body{
 .light{
   background-color: var(--background-light);
   color:var(--color-light);
+  transition: 500ms ease-in-out;
   
 }
 
 .dark{
   background-color: var(--background-dark);
   color:var(--color-dark);
+  transition: 500ms ease-in-out;
 }
 
 h1{
@@ -63,11 +70,32 @@ fieldset{
 input{
   background-color: #fff;
   text-align: center;
+  font-weight: 700;
   border: none;
   padding: 1rem;
   border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
 }
 
-.spacer{
-  height: 83px;
+select{
+  background-color: #fff;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
+}
+
+textarea{
+  background-color: #fff;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
 }

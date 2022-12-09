@@ -35,7 +35,8 @@ export const Login = () => {
                         <h1>Roebuck's Ruin</h1>
                         <h2>an Olive-Free Zone</h2>
                     </div>
-            <section>
+            <section className="form--container">
+                
                 <form className="form--login" onSubmit={handleLogin}>
                     <fieldset className="login--fieldset">
                         <label className="inputLable" htmlFor="inputEmail"> Email address </label>
@@ -56,6 +57,7 @@ export const Login = () => {
             <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
             </section>
+            
         </main>
     )
 }

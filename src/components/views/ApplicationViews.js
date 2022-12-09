@@ -6,6 +6,7 @@ export const ApplicationViews = ({theme}) => {
 	
 	return <Routes>
 				<Route path="/" element={
+					//do i need a home component?
 					<Outlet theme={theme}/>
 				}>
 					<Route path="/mybar" element={ <MyBar theme={theme}/>}></Route>

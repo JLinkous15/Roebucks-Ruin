@@ -1,0 +1,17 @@
+@import "../RoebucksRuin.css";
+
+:root{
+    --recipe-width: 300px
+}
+
+.mybar{
+    display:flex;
+}
+
+.fieldset_post{
+    padding: 1rem 0;
+}
+
+#previewImage,.notes{
+    width: var(--recipe-width)
+}

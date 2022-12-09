@@ -85,12 +85,14 @@
     position: fixed;
     right: 0;
     transition: 500ms ease-in-out;
+    
 }
 
 .nav_menu{
     width: 11rem;
     padding: 2rem;
-    transform: translateX(100%);
+    display:none;
+    transform: translateX(100vw);
     transition: 500ms ease-in-out;
 }
 
@@ -98,6 +100,7 @@
     width: 11rem;
     padding: 2rem;
     transition: 500ms ease-in-out;
+    
 }
 
 .nav_menu_list{

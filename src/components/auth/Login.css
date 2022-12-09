@@ -1,3 +1,4 @@
+
 .container--login{
     display: flex;
     flex-direction: column;
@@ -26,10 +27,13 @@
     width: 90px;
 }
 
+.form--login{
+    padding: 3rem;
+}
+
 .login--fieldset{
     display:flex;
     flex-direction: column;
-    padding: 3rem;
 }
 
 .inputLable{
@@ -43,3 +47,12 @@
     flex-direction: column;
     align-items: center;
 }
+
+.form--container{
+    background-color: rgba(225, 225, 225, 0.5);
+    border: 2px solid var(--background-color);
+    margin: 2rem;
+    border-radius: 1.5rem;
+    filter: drop-shadow(0 0 1rem black);
+}
+
