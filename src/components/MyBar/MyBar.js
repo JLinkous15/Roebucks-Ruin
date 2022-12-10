@@ -59,23 +59,27 @@ useEffect(()=>{
 }, [currentIngredient.ingredientTypeId])
 
 
-const imageHandler = (e) => {
-    const event = e
+const imageHandler = (copy) => {
+    setImage(copy)
+    if(document.getElementById("previewImage_img")){
+        document.getElementById("previewImage_img").remove()
+    }
     const fileReader = new FileReader()    
-    fileReader.readAsDataURL(image)
+    fileReader.readAsDataURL(copy)
 
-    fileReader.addEventListener(
-        "load",
-        (event)=>{
-            const url = fileReader.result
-            const img = new Image()
-            img.src = url
-            img.id = "previewImage"
-            const div = document.getElementById("previewImage")
-            div.appendChild(img) 
-        }
-    )
-}
+    fileReader.addEventListener("load",
+    ()=>{
+        const url = fileReader.result
+        const img = new Image()
+        img.src = url
+        img.id = "previewImage_img"
+        const div = document.getElementById("previewImage")
+        div.appendChild(img)
+        
+    }
+)}
+    
+
 
 //adding ingredient object to an array of ingredients and resetting the ingredient object
 const handleIngredientButton = (e) => {
@@ -96,6 +100,7 @@ const handleIngredientButton = (e) => {
 }
 
 const uploadImage = (image) => {
+    
     const formData = new FormData()
     formData.append("file", image)
     formData.append("upload_preset", "klbtjzwi")
@@ -200,7 +205,9 @@ console.log(currentCocktailIngredients)
                                     </option> 
                                 })}
                         </select>
+
                     {/* INGREDIENTS */}
+
                         <select 
                         id="ingredientSelect"
                         className={theme?"dark":"light"}
@@ -238,15 +245,15 @@ console.log(currentCocktailIngredients)
                     </fieldset>
                     {/* IMAGE */}
 
+                    <label htmlFor="file">Image:</label>
                     <fieldset className="fieldset_post">
-                        <label htmlFor="file">Image:</label>
                         <input type="file" 
                         id="imageFile" 
                         accept="image/jepg"
                         className={theme?"dark":"light"}
                         onChange={(e)=>{
-                            setImage(e.target.files[0])
-                            imageHandler(e)
+                            const copy = e.target.files[0]
+                            imageHandler(copy) 
                             }}
                         // style={image?{backgroundImage: this.image}:{backgroundImage: "none"}}
                         />
@@ -254,8 +261,8 @@ console.log(currentCocktailIngredients)
 
                     {/* NOTES */}
 
+                    <label htmlFor="notes">Notes:</label>
                     <fieldset className="fieldset_post">
-                        <label htmlFor="notes">Notes:</label>
                         <textarea 
                         className={theme?"dark":"light"}
                         name="notes"

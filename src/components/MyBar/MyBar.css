@@ -12,6 +12,6 @@
     padding: 1rem 0;
 }
 
-#previewImage,.notes{
+#previewImage_img,.notes{
     width: var(--recipe-width)
 }

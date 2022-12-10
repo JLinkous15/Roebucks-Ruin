@@ -35,7 +35,7 @@
     width: 2.5rem;
     background-color: #fff;
     border-radius: 2rem;
-    border: solid 3px var(--background-dark);
+    border: solid 6px var(--background-dark);
     padding: .5rem;
     transition: 500ms ease-in-out;
 }
