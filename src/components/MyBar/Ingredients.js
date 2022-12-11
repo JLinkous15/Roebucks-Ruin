@@ -32,7 +32,8 @@ const handleIngredientButton = (event) => {
                 <label htmlFor="ingredient-fieldset">What are your ingredients?</label>
                 <fieldset className="fieldset_post">
                 {/* VOLUME */}
-                    <input type="number"
+                    <input 
+                    type="number"
                     step="0.125"
                     max="4"
                     min="0"
@@ -46,7 +47,7 @@ const handleIngredientButton = (event) => {
                         
                     }}/>
                 {/* SETFILTEREDINGREDIENTS */}
-                    <select  
+                    <select
                     id="ingredientFilterSelect"
                     defaultValue={currentIngredient.ingredientTypeId}
                     className={theme?"dark":"light"}
@@ -74,7 +75,7 @@ const handleIngredientButton = (event) => {
 
                 {/* INGREDIENTS */}
 
-                    <select 
+                    <select
                     id="ingredientSelect"
                     className={theme?"dark":"light"}
                     onChange={(e)=>{
@@ -88,10 +89,12 @@ const handleIngredientButton = (event) => {
                             return <option key={ingredient.id} value={ingredient.name}>{ingredient.name}</option> 
                         })}
                     </select>
+                    
+                {/* BUTTON */}
+
                     <button className={`btn ${theme?"dark":"light"}`}
                     onClick={(event)=>
                         handleIngredientButton(event)
-                    
                     }>Add to Cocktail</button>
                 </fieldset>
             </>)

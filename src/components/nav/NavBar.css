@@ -85,28 +85,17 @@
     position: fixed;
     right: 0;
     transition: 500ms ease-in-out;
-    
 }
-
-.nav_menu{
-    width: 11rem;
-    padding: 2rem;
-    display:none;
+.nav_menu_container.active{
     transform: translateX(100vw);
-    transition: 500ms ease-in-out;
-}
-
-.nav_menu_active{
-    width: 11rem;
-    padding: 2rem;
-    transition: 500ms ease-in-out;
-    
 }
 
 .nav_menu_list{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 3rem;
     transition: 500ms ease-in-out;
 }
 

@@ -4,8 +4,12 @@ import "./MyBar.css"
 import { NameAndType } from "./NameAndType"
 import { Ingredients } from "./Ingredients"
 import { Methods } from "./Methods"
+import { Picture } from "./Picture"
+import { Notes } from "./Notes"
+import { Recipe } from "./Recipe"
+import { SubmitButton } from "./SubmitButton"
 
-export const MyBar = ({theme}) => {
+export const MyBar = ({theme, setHamburger}) => {
     const [types, setTypes] = useState([])
     const [ingredients, setIngredients] = useState([])
     const [filteredIngredients, setFilteredIngredients] = useState([]) 
@@ -37,6 +41,7 @@ export const MyBar = ({theme}) => {
           postDate: ""
         })
         
+        
     //initial fetch of data on initial render
 	useEffect(()=>{
 		fetch(`http://localhost:8088/ingredients`)
@@ -63,50 +68,30 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientTypeId])
 
-const imageHandler = (copy) => {
-    setImage(copy)
-    if(document.getElementById("previewImage_img")){
-        document.getElementById("previewImage_img").remove()
-    }
-    const fileReader = new FileReader()    
-    fileReader.readAsDataURL(copy)
-
-    fileReader.addEventListener("load",
-    ()=>{
-        const url = fileReader.result
-        const img = new Image()
-        img.src = url
-        img.id = "previewImage_img"
-        const div = document.getElementById("previewImage")
-        div.appendChild(img)
-        
-    }
-)}
-
-const uploadImage = (image) => {
+// const uploadImage = (image) => {
     
-    const formData = new FormData()
-    formData.append("file", image)
-    formData.append("upload_preset", "klbtjzwi")
-    fetch(`https//api.cloudinary.com/v1_1/dwbxabkg7/image/upload`, {
-        method: "POST",
-        headers:{
-            "content-type":"application/json"
-        },
-        body: formData
-    })
-    .then(res=>console.log(res))
-}
+//     const formData = new FormData()
+//     formData.append("file", image)
+//     formData.append("upload_preset", "klbtjzwi")
+//     fetch(`https//api.cloudinary.com/v1_1/dwbxabkg7/image/upload`, {
+//         method: "POST",
+//         headers:{
+//             "content-type":"application/json"
+//         },
+//         body: formData
+//     })
+//     .then(res=>console.log(res))
+// }
 
-const submitForm = (e) => {
-    e.preventDefault()
+// const submitForm = (e) => {
+//     e.preventDefault()
 
-}
+// }
 
-    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`}>
+    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)}}>
             <div className="thebuild">
             <h2>Create a Cocktail</h2>
-                <form onSubmit={submitForm}>
+                <form>
                     <br/>
                     <br/>
 
@@ -140,59 +125,31 @@ const submitForm = (e) => {
                     methods={methods}
                     theme={theme}/>
 
-                    {/* IMAGE */}
+                    <Picture
+                    setImage={setImage}
+                    theme={theme} />
+                    
 
-                    <label htmlFor="file">Image:</label>
-                    <fieldset className="fieldset_post">
-                        <input type="file" 
-                        id="imageFile" 
-                        accept="image/jepg"
-                        className={theme?"dark":"light"}
-                        onChange={(e)=>{
-                            const copy = e.target.files[0]
-                            imageHandler(copy) 
-                            }}
-                        // style={image?{backgroundImage: this.image}:{backgroundImage: "none"}}
-                        />
-                    </fieldset>
+                    <Notes 
+                    theme={theme}
+                    cocktail={cocktail}
+                    setCocktail={setCocktail}/>
 
-                    {/* NOTES */}
-
-                    <label htmlFor="notes">Notes:</label>
-                    <fieldset className="fieldset_post">
-                        <textarea 
-                        className={theme?"dark":"light"}
-                        name="notes"
-                        rows="10" 
-                        cols="60"
-                        placeholder="Additional notes on cocktail production or history."
-                        onChange={(e)=>{
-                            const cocktailCopy = {...cocktail}
-                            cocktailCopy.notes = e.target.value
-                            setCocktail(cocktailCopy)
-                        }}/>
-                        
-                    </fieldset>
-                    <button className="btn" type="Submit">Submit</button>
+                    <SubmitButton />
                 </form>
             </div>
-
             <div className="theRecipe">
-                <ul>
-                    {cocktail.name?
-                    <li>{cocktail.name}</li>
-                    :""}
-                    {currentCocktailTypesArray? currentCocktailTypesArray.map((type, index)=><li key={index}>{type.name}<button className={`btn ${theme?"dark":"light"}`}>Delete</button></li>):""}
-                    {currentCocktailIngredients.map((cocktail, index)=>{
-                        return <li key={`${index}`}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.name}<button className={`btn ${theme?"dark":"light"}`}>Delete</button></li>
-                    })}
-                    {cocktail.methodId?<li>{cocktail.methodName}</li>:""}
-                </ul>
-                <div id="previewImage"></div>
-                {cocktail.notes?
-                    <p className="notes">{cocktail.notes}</p>:""}
-                
+                <Recipe 
+                cocktail={cocktail}
+                currentCocktailTypesArray={currentCocktailTypesArray}
+                theme={theme}
+                setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
+                currentCocktailIngredients={currentCocktailIngredients}
+                setCurrentCocktailIngredients={setCurrentCocktailIngredients}
+                image={image}
+                setImage={setImage}/>
             </div>
+            
         </section>
 }
 

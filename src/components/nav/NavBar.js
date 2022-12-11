@@ -5,8 +5,8 @@ import { BiX, BiMenu } from "react-icons/bi";
 import { NavBarData_User } from "./NavBarData";
 import { useState } from "react";
 
-export const NavBar = ({setTheme, theme}) => {
-    const[hamburger, setHamburger]=useState(false)
+export const NavBar = ({setTheme, theme, hamburger, setHamburger}) => {
+    
     const navigate = useNavigate()
   
     return (
@@ -24,13 +24,13 @@ export const NavBar = ({setTheme, theme}) => {
                     </button>
                     <li className="navbar_bars">
                         <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{setHamburger(!hamburger)}}>
-                            {hamburger?<BiX />:<BiMenu />}
+                            {hamburger?<BiMenu />:<BiX />}
                         </Link>
                     </li>
                 </div>
             </ul>
-            <div className="nav_menu_container">
-                <nav className={`nav_menu${hamburger?"_active":""} ${theme?"dark":"light"}`}>
+            <div className={`nav_menu_container ${hamburger? "active":""}`}>
+                <nav className={`nav_menu ${theme?"dark":"light"}`}>
                     <ul className="nav_menu_list">
                         {NavBarData_User.map((listItem, index)=>{
                                 return (

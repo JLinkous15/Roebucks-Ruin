@@ -57,10 +57,9 @@ h2{
 }
 
 .componentContainer{
-  position: fixed;
   height: 100%;
   width: 100%;
-  padding: 100px 45px 205px 45px;
+  padding: 100px 45px 17rem 45px;
 }
 
 fieldset{
