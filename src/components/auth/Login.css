@@ -1,62 +1,58 @@
-.h1, h1 {
-    font-size: 2.5rem;
+
+.container--login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../../public/images/DirtyMartini.jpg");
+    background-size: 100vw;
+    background-position: center center
+
 }
 
-fieldset {
-    min-width: 0;
-    padding: 1rem 0;
-    margin: 0;
-    border: 0;
+@media (max-width: 1283px) {
+    .container--login{
+        background-size: 100vh;
+        margin: auto;
+    }
 }
 
-.form--login {
-    display: inline-block;
-    margin: 0 auto;
-    text-align: left;
+.logo{
+    display: inline;
+    position: fixed;
+    left:5;
+    top: 25px;
+    width: 90px;
 }
 
-.form--login > fieldset > input[type="email"] {
-    width: 25em;
+.form--login{
+    padding: 3rem;
 }
 
-.label--login {
-    width: 8rem;
-    display: inline-block;
+.login--fieldset{
+    display:flex;
+    flex-direction: column;
 }
 
-.form-control {
-    display: block;
-    width: 94%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+.inputLable{
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
-.container--login {
-    text-align: center;
+.title{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.form--login {
-    background-position-x: right;
-    z-index: 1;
-    min-height: 25rem;
-    min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
-}
-
-.button--close {
-    position: relative;
-    bottom: -2rem;
+.form--container{
+    background-color: rgba(225, 225, 225, 0.5);
+    border: 2px solid var(--background-color);
+    margin: 2rem;
+    border-radius: 1.5rem;
+    filter: drop-shadow(0 0 1rem black);
 }
 

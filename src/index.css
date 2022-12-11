@@ -1,7 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;300;500;700;800&display=swap');
+
+:root{
+  --background-light: rgb(225, 225, 225);
+  --background-dark: rgb(34, 34, 34);
+  --color-light: rgb(34, 34, 34);
+  --color-dark: rgb(225, 225, 225);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+}
 
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Sora', sans-serif;
+  color: var(--color-light);
+
+}
+
+/* .navbar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: .5rem;
+  height: 2rem;
+} */
+
+.light{
+  background-color: var(--background-light);
+  color:var(--color-light);
+  transition: 500ms ease-in-out;
+  
+}
+
+.dark{
+  background-color: var(--background-dark);
+  color:var(--color-dark);
+  transition: 500ms ease-in-out;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+h2{
+  font-size: 2rem;
+}
+
+.btn{
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  margin: 1rem;
+  transition: 500ms ease-in-out;
+}
+
+.componentContainer{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  padding: 100px 45px 205px 45px;
+}
+
+fieldset{
+  border: none;
+}
+
+input{
   background-color: #fff;
-  color: #000;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
+}
+
+select{
+  background-color: #fff;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
+}
+
+textarea{
+  background-color: #fff;
+  text-align: center;
+  font-weight: 700;
+  border: none;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: .5rem 1rem;
+  transition: 500ms ease-in-out;
 }

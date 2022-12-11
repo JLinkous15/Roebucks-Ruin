@@ -1,26 +1,47 @@
+@import "../../index.css";
+
 *{
     padding: none;
     margin: none;
   }
 
+.nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: space-between;
     list-style: none;
-    position: relative;
     padding: .5rem;
-    height: 2rem
+    height: 2rem;
+    transition: 500ms ease-in-out;
 }
 
-.logo{
-    width: 1.5rem;
-    position:absolute;
+.logo_dark{
+   width: 2.5rem;
+    background-color: #fff;
+    border-radius: 2rem;
+    border: solid 3px var(--background-light);
+    padding: .5rem;
+    transition: 500ms ease-in-out;
+}
+
+.logo_light{
+    width: 2.5rem;
+    background-color: #fff;
+    border-radius: 2rem;
+    border: solid 6px var(--background-dark);
+    padding: .5rem;
+    transition: 500ms ease-in-out;
 }
 
 .navbar__item {
     list-style-type: none;
-
 }
 
 .navbar__logout {
@@ -28,6 +49,77 @@
     
 }
 
-.navbar_link_image{
-    width: 1.5rem;
+.navbar_link{
+    text-decoration: none;
+}
+
+.btnDark{
+    border: none;
+    background-color: transparent;
+    padding: 25px;
+}
+
+.toggledark{
+    height: 2rem;
+    transition: 500ms ease-in-out;
+}
+.togglelight{
+    height: 2rem;
+    content: var(--color-dark);
+    transition: 500ms ease-in-out;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+}
+
+.bars{
+    font-size: 1.5rem;
+    transition: 500ms ease-in-out;
+}
+
+/* side menu */
+.nav_menu_container{
+    display: inline;
+    position: fixed;
+    right: 0;
+    transition: 500ms ease-in-out;
+    
+}
+
+.nav_menu{
+    width: 11rem;
+    padding: 2rem;
+    display:none;
+    transform: translateX(100vw);
+    transition: 500ms ease-in-out;
+}
+
+.nav_menu_active{
+    width: 11rem;
+    padding: 2rem;
+    transition: 500ms ease-in-out;
+    
+}
+
+.nav_menu_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 500ms ease-in-out;
+}
+
+.nav_menu_content{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    padding: 1rem;
+    text-decoration: none;
+    transition: 500ms ease-in-out;
+} 
+
+.menuItem{
+    display:flex;
+    text-decoration: none;
 }
