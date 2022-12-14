@@ -26,7 +26,7 @@
    width: 2.5rem;
     background-color: #fff;
     border-radius: 2rem;
-    border: solid 3px var(--background-light);
+    border: solid 6px var(--background-light);
     padding: .5rem;
     transition: 500ms ease-in-out;
 }
@@ -80,6 +80,10 @@
 }
 
 /* side menu */
+/* border radius isn't working */
+.nav-menu{
+    border-radius: 1.5rem;
+}
 .nav_menu_container{
     display: inline;
     position: fixed;
@@ -87,7 +91,7 @@
     transition: 500ms ease-in-out;
 }
 .nav_menu_container.active{
-    transform: translateX(100vw);
+    transform: translateX(100%);
 }
 
 .nav_menu_list{

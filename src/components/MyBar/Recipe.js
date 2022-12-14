@@ -12,7 +12,7 @@ export const Recipe = (
     
                 <ul id="recipeList">
                     
-                    <li>{cocktail.name}</li>
+                    <li style={{fontStyle: "bold", fontSize: "20px"}}>{cocktail.name}</li>
 
                     {currentCocktailTypesArray.map((type, index)=><li key={index}>{type.name}
                         <button className={`btn ${theme?"dark":"light"}`}

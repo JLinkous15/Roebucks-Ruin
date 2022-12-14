@@ -1,4 +1,4 @@
-export const Ingredients = ( {
+export const EditIngredients = ( {
     currentIngredient, 
     setCurrentIngredient, 
     ingredients, 
@@ -6,7 +6,7 @@ export const Ingredients = ( {
     ingredientTypes, 
     filteredIngredients, 
     currentCocktailIngredients,
-    setCurrentCocktailIngredients, 
+    setCurrentCocktailIngredients,
     theme} ) => {
 
 const handleIngredientButton = (event) => {
@@ -57,15 +57,20 @@ const handleIngredientButton = (event) => {
                     onChange={(e)=>{
                         const copyIngredients = [...ingredients]
                         const value = parseInt(e.target.value)
-                        const filteredCopy = copyIngredients.filter((thisIngredient)=> thisIngredient.ingredient.ingredientTypeId===value)
+                        const filteredCopy = copyIngredients.filter((ingredient)=>ingredient?.ingredientType?.id===value)
+                        console.log(filteredCopy)
                         setFilteredIngredients(filteredCopy)
+
+                        const copyIngredient = {...currentIngredient}
+                        copyIngredient.ingredient.ingredientTypeId = value
+                        setCurrentIngredient(copyIngredient)
                     }}>
                         <option value="0">What type of ingredient?</option>
-                        {ingredientTypes.map((ingredientType)=>{
+                        {ingredientTypes.map((type, index)=>{
                             return <option 
-                            key={ingredientType.id} 
-                            value={ingredientType.id}>
-                                    {ingredientType.name}
+                            key={index} 
+                            value={type.id}>
+                                    {type.name}
                                 </option> 
                             })}
                     </select>
@@ -79,12 +84,12 @@ const handleIngredientButton = (event) => {
                         const copy = {...currentIngredient}
                         const [targetId, targetName] = e.target.value.split("--")
                         copy.ingredientId = parseInt(targetId)
-                        copy.name = targetName
+                        copy.ingredient.name = targetName
                         setCurrentIngredient(copy)
                     }}>
                     <option value="0">Ingredient Name?</option>
-                        {filteredIngredients.map((thisIngredient)=>{
-                            return <option key={thisIngredient.id} name={thisIngredient.ingredient.name} value={`${thisIngredient.id}--${thisIngredient.ingredient.name}`}>{thisIngredient.ingredient.name}</option> 
+                        {filteredIngredients.map((ingredient, index)=>{
+                            return <option key={index} name={ingredient.name} value={`${ingredient.id}--${ingredient.name}`}>{ingredient.name}</option> 
                         })}
                     </select>
                     

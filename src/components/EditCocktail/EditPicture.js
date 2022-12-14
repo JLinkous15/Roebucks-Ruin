@@ -1,5 +1,5 @@
-export const Picture = ({setImage, theme}) => {
-    
+export const EditPicture = ({setImage, theme, cocktail}) => {
+
     const imageHandler = (copy) => {
         setImage(copy)
         if(document.getElementById("previewImage_img")){
@@ -24,9 +24,12 @@ export const Picture = ({setImage, theme}) => {
                 <input type="file" 
                 id="imageFile" 
                 accept="image/jepg"
+                defaultValue={`${cocktail.image}`}
                 className={theme?"dark":"light"}
                 onChange={(e)=>{
-                    imageHandler(e.target.files[0])
+                    const copy = e.target.files[0]
+                    
+                    imageHandler(copy)
                     }}
                 />
             </fieldset>

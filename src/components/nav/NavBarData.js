@@ -14,7 +14,7 @@ export const NavBarData_User = [
     },{
         title: `My Bar`,
         path: `/mybar`,
-        icon: <FaAngleLeft/>,
+        icon: <FaGlassMartiniAlt/>,
         cName: `nav-text`
     },{
         title: `Browse`,

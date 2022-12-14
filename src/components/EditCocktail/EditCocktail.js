@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import "../../index.css"
-import "./MyBar.css"
-import { NameAndType } from "./NameAndType"
-import { Ingredients } from "./Ingredients"
-import { Methods } from "./Methods"
-import { Picture } from "./Picture"
-import { Notes } from "./Notes"
-import { Recipe } from "./Recipe"
-import { SubmitButton } from "./SubmitButton"
+import "./EditCocktail.css"
+import { EditNameAndType } from "./EditNameAndType"
+import { EditIngredients } from "./EditIngredients"
+import { EditMethods } from "./EditMethods"
+import { EditPicture } from "./EditPicture"
+import { EditNotes } from "./EditNotes"
+import { EditRecipe } from "./EditRecipe"
+import { EditSubmitButton } from "./EditSubmitButton"
+import { useParams } from "react-router-dom"
 
-export const MyBar = ({theme, setHamburger}) => {
+export const EditCocktail = ({theme, setHamburger}) => {
+    const {cocktailId} = useParams()
     const [types, setTypes] = useState([])
     const [ingredients, setIngredients] = useState([])
     const [filteredIngredients, setFilteredIngredients] = useState([]) 
@@ -17,7 +19,10 @@ export const MyBar = ({theme, setHamburger}) => {
     const [filteredIngredientTypes, setFilteredIngredientTypes] = useState([])
     const [methods, setMethods] = useState([])
     const [currentCocktailIngredients, setCurrentCocktailIngredients] = useState([])
+    const [userCocktailIngredientsArray, setUserCocktailIngredientsArray] = useState([])
     const [image, setImage] = useState({})
+    const [userCocktailImage, setUserCocktailImage] = useState("")
+    const [userCocktailTypesArray, setUserCocktailTypesArray] = useState([])
     const [currentCocktailTypeObj, setCurrentCocktailTypeObj] = useState({
         typeId: 0,
         name:""
@@ -32,19 +37,25 @@ export const MyBar = ({theme, setHamburger}) => {
           ingredientTypeId: 0
         }})
     const [cocktail, setCocktail] = useState({
-          name:"",
-          image: "",
-          userId: 0,
-          methodId: 0,
-          methodName: "",
-          notes: "",
-          dateCompleted: ""
-        })
+        id: 0,
+        name: "",
+        image: "",
+        userId: 0,
+        methodId: 0,
+        notes: "",
+        dateCompleted: 0,
+        method: {
+          id: 0,
+          name: ""
+        }
+      })
         
+    const localUser = localStorage.getItem("roebucks_user")
+    const localUserObj = JSON.parse(localUser)
         
     //initial fetch of data on initial render
 	useEffect(()=>{
-		fetch(`http://localhost:8088/cocktailIngredients?_expand=ingredient`)
+		fetch(`http://localhost:8088/ingredients?_expand=ingredientType`)
 		.then(res=>res.json())
 		.then(setIngredients)
 
@@ -59,7 +70,31 @@ export const MyBar = ({theme, setHamburger}) => {
         fetch(`http://localhost:8088/methods`)
         .then(res=>res.json())
         .then(setMethods)
+
+        fetch(`http://localhost:8088/cocktails?id=${cocktailId}&_expand=method`)
+        .then(res=>res.json())
+        .then((res)=>
+            {setCocktail(res[0])
+            setUserCocktailImage(res[0].image)})
+        
+        fetch(`http://localhost:8088/cocktailTypes?cocktailId=${cocktailId}&_expand=type`)
+        .then(res=>res.json())
+        .then(setUserCocktailTypesArray)
+
+        fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${cocktailId}&_expand=ingredient`)
+        .then(res=>res.json())
+        .then(setUserCocktailIngredientsArray)
+
 	}, [])
+
+    //add previously posted ingredients to the appropriate array for display
+    useEffect(()=>{
+        const copy = [...currentCocktailIngredients]
+        const copy2 = [...userCocktailIngredientsArray]
+        const allTheCopies = copy.concat(copy2)
+        setCurrentCocktailIngredients(allTheCopies)
+        
+    }, [userCocktailIngredientsArray])
 
     //filter the ingredients by type
 useEffect(()=>{
@@ -69,15 +104,17 @@ useEffect(()=>{
 }, [currentIngredient.ingredientId])
 
 
+console.log(currentCocktailIngredients)
+
     return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>setHamburger(true)}>
             <div className="thebuild">
-            <h2>Create a Cocktail</h2>
+            <h2>Edit Your Cocktail</h2>
                 <form>
                     <br/>
                     <br/>
 
                     {/* WILL NEED PROPS */}
-                    <NameAndType 
+                    <EditNameAndType 
                     cocktail={cocktail} 
                     setCocktail={setCocktail}
                     currentCocktailTypeObj={currentCocktailTypeObj}
@@ -85,10 +122,12 @@ useEffect(()=>{
                     setCurrentCocktailTypeObj={setCurrentCocktailTypeObj}
                     setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
                     types={types}
+                    userCocktailTypesArray={userCocktailTypesArray}
+                    setUserCocktailTypesArray={setUserCocktailTypesArray}
                     theme={theme}
                     />
 
-                    <Ingredients 
+                    <EditIngredients 
                     currentIngredient={currentIngredient}
                     setCurrentIngredient={setCurrentIngredient}
                     ingredients={ingredients}
@@ -100,40 +139,45 @@ useEffect(()=>{
                     theme={theme}
                     />
 
-                    <Methods
+                    <EditMethods
                     cocktail={cocktail}
                     setCocktail={setCocktail}
                     methods={methods}
                     theme={theme}/>
 
-                    <Picture
+                    <EditPicture
                     setImage={setImage}
-                    theme={theme} />
+                    theme={theme}
+                    cocktail={cocktail} />
                     
 
-                    <Notes 
+                    <EditNotes 
                     theme={theme}
                     cocktail={cocktail}
                     setCocktail={setCocktail}/>
 
-                    <SubmitButton 
+                    <EditSubmitButton 
                     image={image}
                     cocktail={cocktail}
                     setCocktail={setCocktail}
                     currentCocktailIngredients={currentCocktailIngredients}
-                    currentCocktailTypesArray={currentCocktailTypesArray}/>
+                    currentCocktailTypesArray={currentCocktailTypesArray}
+                    userCocktailTypesArray={userCocktailTypesArray}
+                    userCocktailIngredientsArray={userCocktailIngredientsArray}
+                    userCocktailImage={userCocktailImage} />
                 </form>
             </div>
             <div className="theRecipe">
-                <Recipe 
+                <EditRecipe 
                 cocktail={cocktail}
                 currentCocktailTypesArray={currentCocktailTypesArray}
                 theme={theme}
                 setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
                 currentCocktailIngredients={currentCocktailIngredients}
                 setCurrentCocktailIngredients={setCurrentCocktailIngredients}
-                image={image}
-                setImage={setImage}/>
+                userCocktailTypesArray={userCocktailTypesArray}
+                setUserCocktailTypesArray={setUserCocktailTypesArray}
+                cocktailId={cocktailId}/>
             </div>
             
         </section>

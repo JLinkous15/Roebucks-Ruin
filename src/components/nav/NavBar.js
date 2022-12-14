@@ -3,7 +3,6 @@ import "../../index.css"
 import { Link, useNavigate } from "react-router-dom"
 import { BiX, BiMenu } from "react-icons/bi";
 import { NavBarData_User } from "./NavBarData";
-import { useState } from "react";
 
 export const NavBar = ({setTheme, theme, hamburger, setHamburger}) => {
     
