@@ -136,7 +136,12 @@ export const EditSubmitButton = (
                         }
                         }))
 
-                    Promise.all(finalTypeArray.map(type=>createTypesPutPromise(type)))
+                    Promise.all(finalTypeArray.map(type=>{
+                        if(allCocktailTypes.includes(type)){
+                            createTypesPutPromise(type)
+                        }else if(allCocktailTypes.includes(type)){
+                            createTypesPostPromise(type)
+                        }}))
 
                     return cocktailResponseId
                 })
