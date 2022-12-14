@@ -26,7 +26,8 @@ export const Picture = ({setImage, theme}) => {
                 accept="image/jepg"
                 className={theme?"dark":"light"}
                 onChange={(e)=>{
-                    imageHandler(e.target.files[0])
+                    const copy = e.target.files[0]
+                    imageHandler(copy)
                     }}
                 />
             </fieldset>

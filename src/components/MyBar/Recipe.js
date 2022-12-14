@@ -22,17 +22,22 @@ export const Recipe = (
                             setCurrentCocktailTypesArray(copy)
                         }}>Delete</button></li>)}
 
-                    {currentCocktailIngredients.map((cocktail, index)=>
-                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.name}
+                    {currentCocktailIngredients
+                    ?currentCocktailIngredients.map((cocktail, index)=>
+                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.ingredient.name}
                             <button className={`btn ${theme?"dark":"light"}`}
                             onClick={(e)=>{
                                 const copy = [...currentCocktailIngredients]
                                 copy.splice(index, 1)
                                 setCurrentCocktailIngredients(copy)
                             }}>Delete</button></li>
-                    )}
+                    )
+                :""}
                     
-                    <li>{cocktail.methodName}</li>
+                    
+                    {cocktail.method.name?
+                        <li>{cocktail.method.name}</li>
+                        :""}
                 </ul>
                 <div id="previewImage"></div>
                 {cocktail.notes?

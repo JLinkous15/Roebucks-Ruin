@@ -40,6 +40,14 @@
     transition: 500ms ease-in-out;
 }
 
+/* .logo_light:hover{
+    transform: scale(110%);
+}
+
+.logo_dark:hover{
+    transform: scale(110%);
+} */
+
 .navbar__item {
     list-style-type: none;
 }
@@ -79,19 +87,20 @@
     transition: 500ms ease-in-out;
 }
 
-/* side menu */
-/* border radius isn't working */
-.nav-menu{
-    border-radius: 1.5rem;
+.navbar_image:hover{
+    transform: scale(110%);
+    transition: 250ms ease-in-out;
 }
+
 .nav_menu_container{
     display: inline;
     position: fixed;
     right: 0;
+    box-shadow: 0 0 15px;
     transition: 500ms ease-in-out;
 }
 .nav_menu_container.active{
-    transform: translateX(100%);
+    transform: translateX(105%);
 }
 
 .nav_menu_list{

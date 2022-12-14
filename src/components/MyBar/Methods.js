@@ -10,7 +10,7 @@ export const Methods = ({cocktail,setCocktail,methods,theme}) => {
                             const copy = {...cocktail}
                             const [methodId, methodName] = e.target.value.split("--")
                             copy.methodId = parseInt(methodId)
-                            copy.methodName = methodName
+                            copy.method.name = methodName
                             setCocktail(copy)
                         }}>
                         <option value="0">Shaken or Stirred?</option>

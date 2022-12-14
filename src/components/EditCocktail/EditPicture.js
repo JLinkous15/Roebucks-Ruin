@@ -28,7 +28,6 @@ export const EditPicture = ({setImage, theme, cocktail}) => {
                 className={theme?"dark":"light"}
                 onChange={(e)=>{
                     const copy = e.target.files[0]
-                    
                     imageHandler(copy)
                     }}
                 />

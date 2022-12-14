@@ -6,12 +6,11 @@ export const EditMethods = ({cocktail,setCocktail,methods,theme}) => {
                     <select 
                         id="methodSelect"
                         className={theme?"dark":"light"}
-
                         onChange={(e)=>{
                             const copy = {...cocktail}
                             const [methodId, methodName] = e.target.value.split("--")
-                            copy.methodId = parseInt(methodId)
-                            copy.methodName = methodName
+                            copy.method.id = parseInt(methodId)
+                            copy.method.name = methodName
                             setCocktail(copy)
                         }}>
                         <option value="0">Shaken or Stirred?</option>

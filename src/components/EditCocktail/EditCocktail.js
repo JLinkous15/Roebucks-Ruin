@@ -103,9 +103,6 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientId])
 
-
-console.log(currentCocktailIngredients)
-
     return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>setHamburger(true)}>
             <div className="thebuild">
             <h2>Edit Your Cocktail</h2>

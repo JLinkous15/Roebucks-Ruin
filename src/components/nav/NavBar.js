@@ -12,18 +12,18 @@ export const NavBar = ({setTheme, theme, hamburger, setHamburger}) => {
         <div className="nav">
             <ul className={`navbar ${theme?"dark":"light"}`}>
                 <li className="navbar_item">
-                    <Link className="navbar_link" to="/"><img className={theme?"logo_light":"logo_dark"} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
+                    <Link to="/"><img className={`navbar_image ${theme?"logo_light":"logo_dark"}`} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
                 </li>
                 <div className="navbar_item right">
                     <button className="btnDark"
                     onClick={(e)=>{setTheme(!theme)}}>
                         <img className={`navbar_image toggle${theme?"light":"dark"}`} 
                         src={theme?"../../icons/darkmode_dark.svg":"../../icons/darkmode_light.svg"} 
-                        alt="moon" style={theme?{}:{}}/>
+                        alt="moon"/>
                     </button>
                     <li className="navbar_bars">
                         <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{setHamburger(!hamburger)}}>
-                            {hamburger?<BiMenu />:<BiX />}
+                            {hamburger?<BiMenu className="navbar_image"/>:<BiX className="navbar_image"/>}
                         </Link>
                     </li>
                 </div>

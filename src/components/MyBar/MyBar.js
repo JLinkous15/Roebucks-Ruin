@@ -32,19 +32,23 @@ export const MyBar = ({theme, setHamburger}) => {
           ingredientTypeId: 0
         }})
     const [cocktail, setCocktail] = useState({
-          name:"",
-          image: "",
-          userId: 0,
-          methodId: 0,
-          methodName: "",
-          notes: "",
-          dateCompleted: ""
-        })
+        id: 0,
+        name: "",
+        image: "",
+        userId: 0,
+        methodId: 0,
+        notes: "",
+        dateCompleted: 0,
+        method: {
+          id: 0,
+          name: ""
+        }
+      })
         
         
     //initial fetch of data on initial render
 	useEffect(()=>{
-		fetch(`http://localhost:8088/cocktailIngredients?_expand=ingredient`)
+		fetch(`http://localhost:8088/ingredients?_expand=ingredientType`)
 		.then(res=>res.json())
 		.then(setIngredients)
 
@@ -68,7 +72,7 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientId])
 
-
+console.log(currentCocktailTypesArray)
     return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>setHamburger(true)}>
             <div className="thebuild">
             <h2>Create a Cocktail</h2>

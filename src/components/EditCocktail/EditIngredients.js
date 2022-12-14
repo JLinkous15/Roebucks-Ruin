@@ -58,7 +58,6 @@ const handleIngredientButton = (event) => {
                         const copyIngredients = [...ingredients]
                         const value = parseInt(e.target.value)
                         const filteredCopy = copyIngredients.filter((ingredient)=>ingredient?.ingredientType?.id===value)
-                        console.log(filteredCopy)
                         setFilteredIngredients(filteredCopy)
 
                         const copyIngredient = {...currentIngredient}

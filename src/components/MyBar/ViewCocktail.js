@@ -36,6 +36,13 @@ export const ViewCocktail = ({theme, hamburger, setHamburger}) => {
 
     }, [, cocktailId])
 
+    const deleteCocktail = (e) => {
+        e.preventDefault()
+        fetch(`http://localhost:8088/cocktails/${cocktailId}`, {method: "DELETE"})
+        fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${cocktailId}`, {method: "DELETE"})
+        fetch(`http://localhost:8088/cocktailTypes?cocktailId=${cocktailId}`, {method: "DELETE"})
+        setTimeout(()=>{navigate(`/mybar`)}, 2000)
+    }
     return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>setHamburger(true)}>
                 <label className="recipe_label" htmlFor="recipe">{cocktail.name}</label>
                 <img 
@@ -62,9 +69,7 @@ export const ViewCocktail = ({theme, hamburger, setHamburger}) => {
                     </button>
                     <button 
                     className={`btn ${theme?"dark":"light"}`}
-                    onClick={(e)=>{
-                        
-                    }}>
+                    onClick={deleteCocktail}>
                         Delete
                     </button>
                 </>

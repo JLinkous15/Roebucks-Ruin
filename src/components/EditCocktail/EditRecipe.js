@@ -25,7 +25,7 @@ export const EditRecipe = (
         })
         
     }
-console.log(currentCocktailIngredients)
+
     return <>
     
                 <ul id="recipeList">
@@ -70,9 +70,7 @@ console.log(currentCocktailIngredients)
                             }}>Delete</button></li>
                     )}
                     
-                    {cocktail.methodName
-                        ?<li>{cocktail?.methodName}</li>
-                        :<li>{cocktail?.method?.name}</li>}
+                    <li>{cocktail.method.name}</li>
                 </ul>
                 <div id="previewImage">
                     <img id="previewImage_img" src={cocktail.image} alt="cocktail image"/>
