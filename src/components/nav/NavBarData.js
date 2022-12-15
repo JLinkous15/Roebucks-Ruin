@@ -2,24 +2,9 @@ import { FaAngleLeft, FaBookOpen, FaCalculator, FaCocktail, FaGlassMartiniAlt, F
 
 export const NavBarData_User = [
     {
-        title: `Home`,
-        path: `/`,
-        icon: <FaHome/>,
-        cName: `nav-text`
-    },{
         title: `Profile`,
         path: `/profile`,
         icon: <FaIdCard/>,
-        cName: `nav-text`
-    },{
-        title: `My Bar`,
-        path: `/mybar`,
-        icon: <FaGlassMartiniAlt/>,
-        cName: `nav-text`
-    },{
-        title: `Browse`,
-        path: `/browse`,
-        icon: <FaSearch/>,
         cName: `nav-text`
     },{
         title: `Blog`,
@@ -37,6 +22,28 @@ export const NavBarData_User = [
         icon: <FaCocktail/>,
         cName: `nav-text`
     }
+]
+
+export const MyBarData_User = [
+    {
+        title: `My Drinks`,
+        path: `/mybar`,
+        icon: <FaGlassMartiniAlt/>,
+        cName: `nav-text`
+    },
+    {
+        title: `Create`,
+        path: `/mybar/create`,
+        icon: <FaGlassMartiniAlt/>,
+        cName: `nav-text`
+    },
+    {
+        title: `Browse`,
+        path: `/browse`,
+        icon: <FaSearch/>,
+        cName: `nav-text`
+    }
+    
 ]
 
 export const NavBarData = [

@@ -101,22 +101,22 @@ export const EditSubmitButton = (
                         //if ingredient/type exists, use a put. else, use a post. This will probably be within the function body of the .map
                         Promise.all(finalIngredientArray.map(ingredient=>{
                             if(ingredient.id){
-                                createIngredientsPutPromise(ingredient)
+                                return createIngredientsPutPromise(ingredient)
                             }else{
-                                createIngredientsPostPromise(ingredient)
+                                return createIngredientsPostPromise(ingredient)
                             }
                         }))
                         
                         Promise.all(finalTypeArray.map(type=>{
                             if(type.id){
-                                createTypesPutPromise(type)
+                                return createTypesPutPromise(type)
                             }else{
-                                createTypesPostPromise(type)
+                                return createTypesPostPromise(type)
                             }}))
                             
                             return cocktailResponseId
                         })
-                        .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),1000)
+                        .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),2500)
                         )})
                     }else{
                         fetch(`http://localhost:8088/cocktails/${cocktail.id}`, {
@@ -138,17 +138,17 @@ export const EditSubmitButton = (
                         //if ingredient/type exists, use a put. else, use a post. This will probably be within the function body of the .map
                         Promise.all(finalIngredientArray.map(ingredient=>{
                             if(ingredient.id){
-                                createIngredientsPutPromise(ingredient)
+                                return createIngredientsPutPromise(ingredient)
                             }else{
-                                createIngredientsPostPromise(ingredient)
+                                return createIngredientsPostPromise(ingredient)
                             }
                         }))
                         
                         Promise.all(finalTypeArray.map(type=>{
                             if(type.id){
-                                createTypesPutPromise(type)
+                                return createTypesPutPromise(type)
                             }else{
-                                createTypesPostPromise(type)
+                                return createTypesPostPromise(type)
                             }}))
                             
                             return cocktailResponseId
@@ -171,7 +171,7 @@ export const EditSubmitButton = (
                 className="btn" 
                 type="Submit"
                 onClick={(e)=>{
-                    
+                    e.preventDefault()
                 }}>Delete
             </button>
             </>

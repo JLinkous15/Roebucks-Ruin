@@ -12,7 +12,8 @@ import { useState } from "react"
 
 export const RoebucksRuin = () => {
 	const [theme, setTheme] = useState(true)
-	const[hamburger, setHamburger]=useState(true)
+	const [hamburger, setHamburger] = useState(true)
+	const [myBarMenu, setMyBarMenu] = useState(true)
 
 	return <Routes>
 		<Route path="/login" element={<Login />} />
@@ -24,18 +25,24 @@ export const RoebucksRuin = () => {
 				setTheme={setTheme} 
 				theme={theme}
 				hamburger={hamburger}
-				setHamburger={setHamburger}/>
+				setHamburger={setHamburger}
+				myBarMenu={myBarMenu}
+				setMyBarMenu={setMyBarMenu}/>
 				
 				<Authorized>
 					<>
 						<ApplicationViews 
 						theme={theme}
 						hamburger={hamburger}
-						setHamburger={setHamburger}/>
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu}/>
 					</>
 				</Authorized>
 				
-				<Footer />
+				<Footer 
+				setHamburger={setHamburger}
+				setMyBarMenu={setMyBarMenu}/>
 			</div>
 
 		} />

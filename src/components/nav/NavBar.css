@@ -40,14 +40,6 @@
     transition: 500ms ease-in-out;
 }
 
-/* .logo_light:hover{
-    transform: scale(110%);
-}
-
-.logo_dark:hover{
-    transform: scale(110%);
-} */
-
 .navbar__item {
     list-style-type: none;
 }
@@ -67,11 +59,11 @@
     padding: 25px;
 }
 
-.toggledark{
+.switch_dark{
     height: 2rem;
     transition: 500ms ease-in-out;
 }
-.togglelight{
+.switch_light{
     height: 2rem;
     content: var(--color-dark);
     transition: 500ms ease-in-out;
@@ -96,11 +88,27 @@
     display: inline;
     position: fixed;
     right: 0;
-    box-shadow: 0 0 15px;
+    width: 225px;
+    transform: translateX(105%);
+    z-index: 998;
     transition: 500ms ease-in-out;
 }
-.nav_menu_container.active{
+
+.mybarmenu_menu_container{
+    display: inline;
+    position: fixed;
+    right: 0;
     transform: translateX(105%);
+    width: 225px;
+    transition: 500ms ease-in-out;
+}
+
+.active{
+    transform: translateX(0%);
+}
+
+.toggle{
+    transform: translateX(-100%);
 }
 
 .nav_menu_list{

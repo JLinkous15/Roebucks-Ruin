@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import "../../index.css"
 import "./MyBar.css"
 
-export const ViewCocktail = ({theme, hamburger, setHamburger}) => {
+export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     const navigate = useNavigate()
     const { cocktailId } = useParams()
     const [ cocktail, setCocktail ] = useState([])
@@ -32,18 +32,27 @@ export const ViewCocktail = ({theme, hamburger, setHamburger}) => {
         .then(res=>res.json())
         .then(setThisCocktailsTypes)
 
-        /* fetch the appropariate tables for editing */
-
     }, [, cocktailId])
+
+    //Functions to turn array into delete promises
+
+    const deleteCocktailIngredients = (obj) => {
+        return fetch(`http://localhost:8088/cocktailIngredients/${obj.id}`, {method: "DELETE"})
+    }
+    const deleteCocktailTypes = (obj) => {
+        return fetch(`http://localhost:8088/cocktailTypes/${obj.id}`, {method: "DELETE"})
+    }
 
     const deleteCocktail = (e) => {
         e.preventDefault()
         fetch(`http://localhost:8088/cocktails/${cocktailId}`, {method: "DELETE"})
-        fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${cocktailId}`, {method: "DELETE"})
-        fetch(`http://localhost:8088/cocktailTypes?cocktailId=${cocktailId}`, {method: "DELETE"})
+        Promise.all(thisCocktailsIngredients.map(ingredient=>deleteCocktailIngredients(ingredient)))
+        Promise.all(thisCocktailsTypes.map(ingredient=>deleteCocktailTypes(ingredient)))
         setTimeout(()=>{navigate(`/mybar`)}, 2000)
     }
-    return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>setHamburger(true)}>
+    
+    return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
+        setMyBarMenu(true)}}>
                 <label className="recipe_label" htmlFor="recipe">{cocktail.name}</label>
                 <img 
                 src={cocktail.image} 
