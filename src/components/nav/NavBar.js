@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { BiX, BiMenu } from "react-icons/bi";
 import { NavBarData_User, MyBarData_User } from "./NavBarData";
 import { FaAngleLeft } from "react-icons/fa";
+import { useEffect } from "react";
 
 export const NavBar = ({
     setTheme, 
@@ -14,7 +15,15 @@ export const NavBar = ({
     setMyBarMenu}) => {
     
     const navigate = useNavigate()
-  
+    const localUser = localStorage.getItem("roebucks_user")
+    const localUserObj = JSON.parse(localUser)
+    
+	useEffect(()=>{
+	fetch(`http://localhost:8088/users?id=${localUserObj.id}`)
+	.then(res=>res.json())
+	.then(res=>setTheme(res[0].darkMode))
+	},[])
+
     return (
         <div className="nav">
             <ul className={`navbar ${theme?"dark":"light"}`}>
@@ -23,7 +32,8 @@ export const NavBar = ({
                 </li>
                 <div className="navbar_item right">
                     <button className="btnDark"
-                    onClick={(e)=>{setTheme(!theme)}}>
+                    onClick={(e)=>{
+                        setTheme(!theme)}}>
                         <img className={`navbar_image ${theme?"switch_light":"switch_dark"}`} 
                         src={theme?"../../icons/darkmode_dark.svg":"../../icons/darkmode_light.svg"} 
                         alt="moon"/>
@@ -31,6 +41,7 @@ export const NavBar = ({
                     <li className="navbar_bars">
                         <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{
                             setHamburger(!hamburger)
+                            setMyBarMenu(true)
                         }}>
                             {hamburger?<BiMenu className="navbar_image"/>:<BiX className="navbar_image"/>}
                         </Link>
@@ -49,7 +60,7 @@ export const NavBar = ({
                                 className="nav_menu_content" 
                                 key={index} 
                                 onClick={(e)=>{setHamburger(true)
-                                    setMyBarMenu(true)}}>
+                                    setMyBarMenu(!myBarMenu)}}>
                                     <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path}>
                                         <div className="menuItem">{listItem.icon}{listItem.title}</div>
                                     </Link>
@@ -58,6 +69,8 @@ export const NavBar = ({
                             })}
                     <button className={`btn ${theme?"light":"dark"}`}
                     onClick={()=>{
+                        setHamburger(true)
+                        setMyBarMenu(true)
                         localStorage.removeItem("roebucks_user", { replace : true })
                         navigate("/")
                     }}>

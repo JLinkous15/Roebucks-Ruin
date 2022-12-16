@@ -89,8 +89,8 @@
     position: fixed;
     right: 0;
     width: 225px;
-    transform: translateX(105%);
-    z-index: 998;
+    transform: translateX(100%);
+    z-index: 999;
     transition: 500ms ease-in-out;
 }
 
@@ -98,7 +98,7 @@
     display: inline;
     position: fixed;
     right: 0;
-    transform: translateX(105%);
+    transform: translateX(100%);
     width: 225px;
     transition: 500ms ease-in-out;
 }

@@ -53,6 +53,8 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
     
     return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
+            <div className="top">
+            <div className="leftSide">
                 <label className="recipe_label" htmlFor="recipe">{cocktail.name}</label>
                 <img 
                 src={cocktail.image} 
@@ -60,8 +62,9 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                 className="viewCocktailImage"/>
                 <ul>
                     {thisCocktailsIngredients.map(cocktailIngredient=>{
-                        return <li key={cocktailIngredient.id}>{cocktailIngredient.volume} {cocktailIngredient?.ingredient?.ingredientTypeId===6
-                            ?""
+                        return <li key={cocktailIngredient.id}>{cocktailIngredient.volume} 
+                        {cocktailIngredient?.ingredient?.ingredientTypeId===6
+                            ?"muddled"
                             :cocktailIngredient.ingredientId===3
                                 ?"dashes"
                                 :"ounces"} {cocktailIngredient?.ingredient?.name}</li>
@@ -83,6 +86,11 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                     </button>
                 </>
                 :""}
+                </div>
+                <div className="rightSide">
+                    <p>{cocktail.notes}</p>
+                </div>
+                </div>
                 {/*links and carrousels of user cocktails*/}
                 <ul className="userCocktailList">
                     {userCocktails.map((userCocktail, index)=>{

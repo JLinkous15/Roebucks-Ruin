@@ -56,16 +56,12 @@ export const EditSubmitButton = (
         e.preventDefault()
         
         if(cocktail.notes.toLowerCase().includes("olive")||cocktail.notes.toLowerCase().includes("olives")){
-            localStorage.removeItem("roebucks_user", { replace : true })
             
             fetch(`http://localhost:8088/users?id=${localUserObj.id}`, {method: "DELETE"})
-            .then(()=>{
-                window.alert("This is an olive-free zone. You were warned... Your account has been deleted.")
-                setTimeout(()=>{ navigate("/")},5000)
-            })
-        }
-        
-        if(image.name){
+            localStorage.removeItem("roebucks_user", { replace : true })
+            navigate("/")
+            window.alert("This is an olive-free zone. You were warned... Your account has been deleted.")
+        }else if(image.name){
             const formData = new FormData()
             formData.append("file", image)
             formData.append("upload_preset", "klbtjzwi")
@@ -116,45 +112,49 @@ export const EditSubmitButton = (
                             
                             return cocktailResponseId
                         })
-                        .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),2500)
+                        .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),3000)
                         )})
                     }else{
+                        const cocktailCopy = {...cocktail}
+                        delete cocktailCopy.method
+                        setCocktail(cocktailCopy)
+
                         fetch(`http://localhost:8088/cocktails/${cocktail.id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(cocktail)})
-                    .then(response=>response.json())
-                    .then(response=>{
-                        const cocktailResponseId = response.id
-                        
-                        currentCocktailIngredients.forEach(thisIngredient=> delete thisIngredient.ingredient)
-                        const finalIngredientArray = currentCocktailIngredients.map((ingredient)=>{return ({...ingredient, cocktailId: cocktailResponseId})}) 
-                        
-                        currentCocktailTypesArray.forEach(type=> delete type["name"])
-                        const finalTypeArray = currentCocktailTypesArray.map((type)=>{return ({...type, cocktailId: cocktailResponseId})}) 
-                        
-                        //if ingredient/type exists, use a put. else, use a post. This will probably be within the function body of the .map
-                        Promise.all(finalIngredientArray.map(ingredient=>{
-                            if(ingredient.id){
-                                return createIngredientsPutPromise(ingredient)
-                            }else{
-                                return createIngredientsPostPromise(ingredient)
-                            }
-                        }))
-                        
-                        Promise.all(finalTypeArray.map(type=>{
-                            if(type.id){
-                                return createTypesPutPromise(type)
-                            }else{
-                                return createTypesPostPromise(type)
-                            }}))
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(cocktail)})
+                        .then(response=>response.json())
+                        .then(response=>{
+                            const cocktailResponseId = response.id
                             
-                            return cocktailResponseId
-                        })
-                        .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),1000)
-                        )
+                            currentCocktailIngredients.forEach(thisIngredient=> delete thisIngredient.ingredient)
+                            const finalIngredientArray = currentCocktailIngredients.map((ingredient)=>{return ({...ingredient, cocktailId: cocktailResponseId})}) 
+                            
+                            currentCocktailTypesArray.forEach(type=> delete type["name"])
+                            const finalTypeArray = currentCocktailTypesArray.map((type)=>{return ({...type, cocktailId: cocktailResponseId})}) 
+                            
+                            //if ingredient/type exists, use a put. else, use a post. This will probably be within the function body of the .map
+                            Promise.all(finalIngredientArray.map(ingredient=>{
+                                if(ingredient.id){
+                                    return createIngredientsPutPromise(ingredient)
+                                }else{
+                                    return createIngredientsPostPromise(ingredient)
+                                }
+                            }))
+                            
+                            Promise.all(finalTypeArray.map(type=>{
+                                if(type.id){
+                                    return createTypesPutPromise(type)
+                                }else{
+                                    return createTypesPostPromise(type)
+                                }}))
+                                
+                                return cocktailResponseId
+                            })
+                            .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),3000)
+                            )
                     }
                     }
        

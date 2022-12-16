@@ -7,7 +7,7 @@ import { Register } from "./auth/Register"
 import "../index.css"
 import "./RoebucksRuin.css"
 import { Footer } from "./Footer/Footer"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export const RoebucksRuin = () => {

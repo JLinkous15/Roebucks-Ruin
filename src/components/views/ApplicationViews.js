@@ -4,6 +4,7 @@ import { Home } from "../Home/Home"
 import { MyBar } from "../MyBar/MyBar"
 import { CreateCocktail } from "../MyBar/CreateCocktail"
 import { ViewCocktail } from "../MyBar/ViewCocktail"
+import { AboutUs } from "../AboutUs/AboutUs"
 
 export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, setMyBarMenu}) => {
 	
@@ -13,6 +14,13 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 					<Outlet 
 					/>
 				}>
+					<Route path="/about" element={
+						<AboutUs 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
 					<Route path="/" element={
 						<Home 
 						theme={theme}

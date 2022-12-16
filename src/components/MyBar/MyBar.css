@@ -38,3 +38,11 @@
     align-items: center;
 }
 
+.top{
+    display: flex;
+}
+
+.rightSide{
+    padding: 28px;
+    width: 25rem;
+}

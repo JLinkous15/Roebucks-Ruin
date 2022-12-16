@@ -1,18 +1,19 @@
+@import "../../index.css";
 
 .container--login{
+    background-color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-image: url("../../../public/images/DirtyMartini.jpg");
     background-size: 100vw;
-    background-position: center center
-
+    background-position: center center;
+    transition: ease-in-out 500ms;
 }
 
-@media (max-width: 1283px) {
+@media (max-width: 1430px) {
     .container--login{
         background-size: 100vh;
         margin: auto;

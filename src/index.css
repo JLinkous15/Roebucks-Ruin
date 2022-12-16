@@ -59,7 +59,7 @@ h2{
 .componentContainer{
   display: block;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   padding: 125px 45px 17rem 45px;
 }
 
