@@ -81,7 +81,7 @@ export const SubmitButton = (
                     return cocktailResponseId
                 })
                 .then((res)=>{
-                    setTimeout(()=>navigate(`/mybar/${res}/view`), 2500)
+                    setTimeout(()=>navigate(`/mybar/${res}/view`), 3000)
         })
         })}
         }

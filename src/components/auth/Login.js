@@ -16,18 +16,15 @@ export const Login = () => {
         .then(res=>res.json())
         .then((res)=>{setCocktails(res)})
         
-        fetch(`http://localhost:8088/cocktails?id=${id}`)
-            .then(res=>res.json())
-            .then((res)=>setBackgroundCocktail(res[0]))
     }, [])
 
     useEffect(()=>{
         const id = Math.floor(Math.random() * cocktails.length + 1)
         fetch(`http://localhost:8088/cocktails?id=${id}`)
             .then(res=>res.json())
-            .then((res)=>{setTimeout(()=>{setBackgroundCocktail(res[0])
-                console.log(id)}, 5000)})
-    }, [backgroundCocktail])
+            .then((res)=>setBackgroundCocktail(res[0])
+)
+    }, [cocktails])
 
     const handleLogin = (e) => {
         e.preventDefault()

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 export const MyBar = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     const localUser = localStorage.getItem("roebucks_user")
@@ -13,9 +14,14 @@ export const MyBar = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     },[])
     return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
-            {/* {userCocktails.map(cocktail=>{
-                return 
-                })} */}
-        
+            <div className="mybar_cocktails">
+            {userCocktails.map((cocktail, index)=>{
+                return <Link key={index} 
+                to={`/mybar/${cocktail.id}/view`} 
+                className={`mybar_cocktailList`}
+                style={{backgroundImage: `url(${cocktail.image})`}}>{cocktail.name}</Link>
+
+                })}
+        </div>
     </section>
 }

@@ -1,0 +1,8 @@
+.About{
+    text-align: center;
+}
+.martini-about{
+    width: 800px;
+    height: 600px;
+    object-fit: cover;
+}

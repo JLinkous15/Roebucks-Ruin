@@ -4,8 +4,9 @@
     --recipe-width: 300px
 }
 
-.mybar{
+.mybar_cocktails{
     display:flex;
+    flex-wrap: wrap;
 }
 
 .fieldset_post{
@@ -45,4 +46,18 @@
 .rightSide{
     padding: 28px;
     width: 25rem;
+}
+
+.mybar_cocktailList{
+    text-decoration: none;
+    width: 25%;
+    height:25%;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    margin: 10px;
 }

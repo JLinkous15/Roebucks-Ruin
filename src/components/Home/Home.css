@@ -1,0 +1,27 @@
+.about-us{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    background-image: url("../../../public/images/DirtyMartini.jpg");
+    background-position: center center;
+    background-size:cover;
+    width: 600px;
+    height: 600px;
+    border-radius: 1.5rem;
+
+}
+
+.about-olives{
+    padding: 10px 20px;
+}
+
+.homeButton{
+    align-self: end;
+    width: 15rem;
+    height: 5rem;
+    font-size: 1.66rem;
+    border-radius: 3rem;
+    box-shadow: 0 0 10px black;
+}
+

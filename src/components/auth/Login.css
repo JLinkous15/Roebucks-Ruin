@@ -50,7 +50,7 @@
 }
 
 .form--container{
-    background-color: rgba(225, 225, 225, 0.5);
+    background-color: rgba(225, 225, 225);
     border: 2px solid var(--background-color);
     margin: 2rem;
     border-radius: 1.5rem;

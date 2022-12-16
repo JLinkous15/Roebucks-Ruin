@@ -35,8 +35,8 @@ export const Recipe = (
                 :""}
                     
                     
-                    {cocktail.method.name?
-                        <li>{cocktail.method.name}</li>
+                    {cocktail?.method?.name?
+                        <li>{cocktail?.method?.name}</li>
                         :""}
                 </ul>
                 <div id="previewImage"></div>

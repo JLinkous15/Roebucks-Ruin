@@ -14,7 +14,7 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 					<Outlet 
 					/>
 				}>
-					<Route path="/about" element={
+					<Route path="about" element={
 						<AboutUs 
 						theme={theme}
 						hamburger={hamburger}
