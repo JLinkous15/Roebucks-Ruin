@@ -7,27 +7,6 @@
     display: flex;
     flex-direction: column; 
 }
-.blog-hero{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 66vw;
-    background-image: url("../../../public/images/DirtyMartini.jpg");
-    background-position: center center;
-    padding: 3rem 0;
-    background-size: cover;
-    margin: 0;
-
-}
-
-.blog-hero-content{
-    display: flex;
-    flex-direction: column;
-    width: 66%;
-    padding: 20px 0px
-}
 
 .blog-form{
     display:flex;

@@ -98,8 +98,8 @@ export const BlogWrite = ({theme, setHamburger, setMyBarMenu}) => {
                 </div>
             </form>
             <div className="blogContainer">
-                <div className="blog-hero preview" style={imageString?{backgroundImage: `url(${imageString})`}:{backgroundImage:"none"}} >
-                    <div className="blog-hero-content">
+                <div className="hero preview" style={imageString?{backgroundImage: `url(${imageString})`}:{backgroundImage:"none"}} >
+                    <div className="hero-content">
                         <h1>{blog.title}</h1>
                         <h2>{blog.subTitle}</h2>
                         <h3></h3>
