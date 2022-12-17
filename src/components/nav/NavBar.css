@@ -18,12 +18,12 @@
     justify-content: space-between;
     list-style: none;
     padding: .5rem;
-    height: 2rem;
+    height: 3rem;
     transition: 500ms ease-in-out;
 }
 
 .logo_dark{
-   width: 2.5rem;
+   width: 3.75rem;
     background-color: #fff;
     border-radius: 2rem;
     border: solid 6px var(--background-light);
@@ -32,7 +32,7 @@
 }
 
 .logo_light{
-    width: 2.5rem;
+    width: 3.75rem;
     background-color: #fff;
     border-radius: 2rem;
     border: solid 6px var(--background-dark);
@@ -79,9 +79,10 @@
     transition: 500ms ease-in-out;
 }
 
-.navbar_image:hover{
+.logo_light,.logo_dark:hover{
     transform: scale(110%);
-    transition: 250ms ease-in-out;
+
+    
 }
 
 .nav_menu_container{

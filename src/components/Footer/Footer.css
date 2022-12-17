@@ -1,6 +1,4 @@
-*{
-    margin: 0;
-}
+@import "../../index.css";
 
 .footer-container{
     background-color: black;

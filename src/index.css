@@ -10,6 +10,7 @@
 *{
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body{
@@ -17,15 +18,6 @@ body{
   color: var(--color-light);
 
 }
-
-/* .navbar {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: .5rem;
-  height: 2rem;
-} */
 
 .light{
   background-color: var(--background-light);
@@ -50,7 +42,7 @@ h2{
 
 .btn{
   padding: .5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   height: 3rem;
   font-weight: 700;
   margin: 1rem;
@@ -58,10 +50,10 @@ h2{
 }
 
 .componentContainer{
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  width: 100%;
-  padding: 125px 45px 17rem 0;
+  padding: 125px 0 40rem 0;
 }
 
 fieldset{

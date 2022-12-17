@@ -60,7 +60,7 @@ export const NavBar = ({
                                 className="nav_menu_content" 
                                 key={index} 
                                 onClick={(e)=>{setHamburger(true)
-                                    setMyBarMenu(!myBarMenu)}}>
+                                    setMyBarMenu(true)}}>
                                     <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path}>
                                         <div className="menuItem">{listItem.icon}{listItem.title}</div>
                                     </Link>

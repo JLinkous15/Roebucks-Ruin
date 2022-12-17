@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import "./MyBar.css"
 
 export const MyBar = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     const localUser = localStorage.getItem("roebucks_user")
@@ -12,7 +13,7 @@ export const MyBar = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
         .then(res=>res.json())
         .then(setUserCocktails)
     },[])
-    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`mybar componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
             <div className="mybar_cocktails">
             {userCocktails.map((cocktail, index)=>{

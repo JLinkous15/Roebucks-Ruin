@@ -1,4 +1,4 @@
-@import "../RoebucksRuin.css";
+@import "../../index.css";
 
 :root{
     --recipe-width: 300px
@@ -7,6 +7,7 @@
 .mybar_cocktails{
     display:flex;
     flex-wrap: wrap;
+    padding: 0 45px;
 }
 
 .fieldset_post{
@@ -50,8 +51,8 @@
 
 .mybar_cocktailList{
     text-decoration: none;
-    width: 25%;
-    height:25%;
+    width: 25vw;
+    height:25vw;
     background-size: cover;
     background-position: center center;
     display: flex;

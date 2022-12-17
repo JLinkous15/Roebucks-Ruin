@@ -4,7 +4,10 @@ import { Home } from "../Home/Home"
 import { MyBar } from "../MyBar/MyBar"
 import { CreateCocktail } from "../MyBar/CreateCocktail"
 import { ViewCocktail } from "../MyBar/ViewCocktail"
-import { AboutUs } from "../AboutUs/AboutUs"
+import { BlogList } from "../Blog/BlogList"
+import { BlogView } from "../Blog/BlogView"
+import { BlogWrite } from "../Blog/BlogWrite"
+
 
 export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, setMyBarMenu}) => {
 	
@@ -14,8 +17,22 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 					<Outlet 
 					/>
 				}>
-					<Route path="about" element={
-						<AboutUs 
+					<Route path="blog" element={
+						<BlogList 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
+					<Route path="blog/blogwrite" element={
+						<BlogWrite 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
+					<Route path="blog/:blogId/view" element={
+						<BlogView 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}
