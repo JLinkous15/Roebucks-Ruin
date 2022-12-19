@@ -9,7 +9,7 @@ export const BlogView = ({theme, setHamburger, setMyBarMenu}) => {
                 <div className="blog-hero">
                     <div className="blog-hero-content">
                         <h1>About Roebuck's Ruin</h1>
-                        <h2>A talk about ingredients, the website, and olives.</h2>
+                        <h3>A talk about ingredients, the website, and olives.</h3>
                         <h3></h3>
                     </div>
                 </div>

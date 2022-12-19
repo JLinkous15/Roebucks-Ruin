@@ -5,7 +5,7 @@
 }
 .blogContainer{
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .blog-form{
@@ -19,15 +19,7 @@
     flex-direction: column; 
 }
 
-.preview{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 66vw;
-    background-position: center center;
-    padding: 3rem 0;
-    background-size: cover;
-    margin: 0;
+.blog-content{
+    padding: 2rem 6rem;
+    font-size: 24px;
 }

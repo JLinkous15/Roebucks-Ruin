@@ -6,7 +6,7 @@ import "../../index.css"
 export const Home = ({theme, setHamburger, setMyBarMenu}) => {
     const navigate = useNavigate()
 
-    return <section className={`Home componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
                 
                 <BlockOne 

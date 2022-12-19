@@ -1,16 +1,28 @@
 import { useEffect, useState } from "react"
+import { BlogSubmitButton } from "./BlogSubmitButton"
+import "./Blog.css"
+import "../../index.css"
 
 export const BlogWrite = ({theme, setHamburger, setMyBarMenu}) => {
     const [image, setImage] = useState({})
     const [imageString, setImageString] = useState("")
+    const [blogTopics, setBlogTopics] = useState([])
+    const [blogTopicName, setBlogTopicName] = useState("")
     const [blog, setBlog] = useState({
-        employeeId: 0,
+        userId: 0,
         title: "",
         subTitle: "",
         image: "",
         content: "",
-        dateCompleted: 0
+        blogTopicId: "",
+        date: 0
       })
+
+      useEffect(()=>{
+        fetch(`http://localhost:8088/blogTopics`)
+        .then(res=>res.json())
+        .then(setBlogTopics)
+      }, [])
 
       useEffect(()=>{
 
@@ -24,24 +36,34 @@ export const BlogWrite = ({theme, setHamburger, setMyBarMenu}) => {
         })}
       },[image])
 
-    const submitBlog = (e) => {
-        e.preventDefault()
 
-        fetch(`http://localhost:8088/blogs`, {method: "POST",
-            headers:{
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify()
-        })
-    }
 
     //image, content, employeeId, datePosted
-
+console.log(blogTopicName)
     return <section 
     className={`componentContainer ${theme?"light":"dark"}`} 
     onClick={(e)=>{setHamburger(true)
                     setMyBarMenu(true)}}>
             <form className={`blog-form`}>
+            <label htmlFor="topic">Topic</label>
+                <fieldset className={`blog-form-fieldset`}>
+                    <select 
+                        className={theme?"dark":"light"}
+                        style={{width: "25rem"}}
+                        onChange={(e)=>{
+                            const copy = {...blog}
+                            const [topicId, topicName] = e.target.value.split("--")
+                            copy.blogTopicId = parseInt(topicId)
+                            setBlog(copy)
+                            setBlogTopicName(topicName)
+                        }}>
+                            <option value="0">Choose a Topic</option>
+                            {blogTopics.map((topic, index)=>{
+                                return <option key={index} value={`${topic.id}--${topic.name}`}>{topic.name}</option>
+                            })}
+                        </select>
+                </fieldset>
+
                 <label htmlFor="title">Title</label>
                 <fieldset className={`blog-form-fieldset`}>
                     <input type="text" 
@@ -89,25 +111,31 @@ export const BlogWrite = ({theme, setHamburger, setMyBarMenu}) => {
                         }} />
                 </fieldset>
                 
-                <div className="blog-submit-button-container">
-                    <button 
-                        className={`btn ${theme?"dark":"light"}`}
-                        onClick={(e)=>{submitBlog(e)}}>
-                            Submit Article
-                    </button>
-                </div>
+               <BlogSubmitButton
+               theme={theme}
+               blog={blog}
+               image={image} />
             </form>
-            <div className="blogContainer">
-                <div className="hero preview" style={imageString?{backgroundImage: `url(${imageString})`}:{backgroundImage:"none"}} >
-                    <div className="hero-content">
-                        <h1>{blog.title}</h1>
-                        <h2>{blog.subTitle}</h2>
-                        <h3></h3>
-                    </div>
+
+            {blog.title && image
+                ?<div className="hero" style={imageString?{backgroundImage: `url(${imageString})`}:{backgroundImage:"none"}} >
+                <div className="hero-content">
+                    {blogTopicName
+                    ?<label 
+                    htmlFor="hero" 
+                    className={`heroLabel ${theme?"dark":"light"}`}>{`${blogTopicName}`}</label>:""}
+                    <h1 className="hero-item">{blog.title}</h1>
+                    <h3 className="hero-item">{blog.subTitle}</h3>
+                    <h3 className="hero-item">Date | Author</h3>
                 </div>
+                
+            </div>
+            :""}
+            <div>
                 <p className="blog-content">
-                    {blog.content}
+                {blog.content}
                 </p>
             </div>
+
         </section>
 }

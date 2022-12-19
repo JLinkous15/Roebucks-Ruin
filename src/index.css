@@ -11,17 +11,24 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  
+}
+
+#root{
+  height: 100%;
 }
 
 body{
   font-family: 'Sora', sans-serif;
   color: var(--color-light);
+  height: 100%;
 
 }
 
 .light{
   background-color: var(--background-light);
   color:var(--color-light);
+  height: 100%;
   transition: 500ms ease-in-out;
   
 }
@@ -29,15 +36,23 @@ body{
 .dark{
   background-color: var(--background-dark);
   color:var(--color-dark);
+  height: 100%;
   transition: 500ms ease-in-out;
 }
 
 h1{
-  font-size: 3rem;
+  font-size: 5rem;
+  font-weight: 700;
 }
 
 h2{
-  font-size: 2rem;
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+h3{
+  font-size: 3rem;
+  font-weight: 100;
 }
 
 .btn{
@@ -67,7 +82,7 @@ input{
   font-weight: 700;
   border: none;
   padding: 1rem;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   margin: .5rem 1rem;
   transition: 500ms ease-in-out;
 }
@@ -78,7 +93,7 @@ select{
   font-weight: 700;
   border: none;
   padding: 1rem;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   margin: .5rem 1rem;
   transition: 500ms ease-in-out;
 }
@@ -89,8 +104,10 @@ textarea{
   font-weight: 700;
   border: none;
   padding: 1rem;
-  border-radius: 1.5rem;
+  border-radius: .5rem;
   margin: .5rem 1rem;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
   transition: 500ms ease-in-out;
 }
 
@@ -109,12 +126,17 @@ label{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 66vw;
+  text-align: center;
+  height:70vw;
+  max-height: 70vw;
   background-position: center center;
-  padding: 3rem 0;
   background-size: cover;
-  margin: 0;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+
+}
+
+.hero:hover{
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.15);
 }
 
 .hero-content{
@@ -122,4 +144,15 @@ label{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+}
+
+.heroLabel{
+  font-size: 16px;
+  padding: 1rem 2rem;
+}
+
+.hero-item{
+  padding: 2rem;
+  color: white;
 }
