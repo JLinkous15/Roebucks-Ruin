@@ -4,35 +4,35 @@ import { Home } from "../Home/Home"
 import { MyBar } from "../MyBar/MyBar"
 import { CreateCocktail } from "../MyBar/CreateCocktail"
 import { ViewCocktail } from "../MyBar/ViewCocktail"
-import { BlogList } from "../Blog/BlogList"
-import { BlogView } from "../Blog/BlogView"
-import { BlogWrite } from "../Blog/BlogWrite"
+import { ArticleList } from "../Article/ArticleList"
+import { ArticleView } from "../Article/ArticleView"
+import { ArticleWrite } from "../Article/ArticleWrite"
 
 
 export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, setMyBarMenu}) => {
 	
 	return <Routes>
 				<Route path="/" element={
-					//do i need a home component?
+
 					<Outlet 
 					/>
 				}>
-					<Route path="blog" element={
-						<BlogList 
+					<Route path="articles" element={
+						<ArticleList 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}
 						myBarMenu={myBarMenu}
 						setMyBarMenu={setMyBarMenu} />} />
-					<Route path="blog/blogwrite" element={
-						<BlogWrite 
+					<Route path="articles/articlewrite" element={
+						<ArticleWrite 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}
 						myBarMenu={myBarMenu}
 						setMyBarMenu={setMyBarMenu} />} />
-					<Route path="blog/:blogId/view" element={
-						<BlogView 
+					<Route path="articles/:articleId/view" element={
+						<ArticleView 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}

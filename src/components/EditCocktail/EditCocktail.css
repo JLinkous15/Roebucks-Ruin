@@ -1,4 +1,4 @@
-@import "../RoebucksRuin.css";
+@import "../../index.css";
 
 :root{
     --recipe-width: 300px
@@ -6,6 +6,7 @@
 
 .mybar{
     display:flex;
+    flex-direction: row;
 }
 
 .fieldset_post{

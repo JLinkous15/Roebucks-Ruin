@@ -55,7 +55,7 @@ export const Login = () => {
                 }} >
                     <img alt="RR" src="../../icons/Roebucksruin_Bug.svg" className="logo"/>
                     <div className="title">
-                        <h1>Roebuck's Ruin</h1>
+                        <h1 style={{color: "#ffffff"}}>Roebuck's Ruin</h1>
                         <h2>an Olive-Free Zone</h2>
                     </div>
             <section className="form--container">

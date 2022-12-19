@@ -7,8 +7,8 @@ export const NavBarData_User = [
         icon: <FaIdCard/>,
         cName: `nav-text`
     },{
-        title: `Blog`,
-        path: `/blog`,
+        title: `Articles`,
+        path: `/articles`,
         icon: <FaBookOpen/>,
         cName: `nav-text`
     },{

@@ -103,7 +103,7 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientId])
 
-    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`componentContainer mybar ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
             <div className="thebuild">
             <h2>Edit Your Cocktail</h2>

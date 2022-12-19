@@ -1,12 +1,12 @@
-import { Axios } from "axios"
+import Axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-export const BlogSubmitButton = ({theme, blog, image}) => {
+export const ArticleSubmitButton = ({theme, article, image}) => {
     const navigate = useNavigate()
     const localUser = localStorage.getItem("roebucks_user")
     const localUserObj = JSON.parse(localUser)
 
-    const submitBlog = (e) => {
+    const submitArticle = (e) => {
         e.preventDefault()
         
         const formData = new FormData()
@@ -15,29 +15,30 @@ export const BlogSubmitButton = ({theme, blog, image}) => {
 
             Axios.post(`https://api.cloudinary.com/v1_1/dwbxabkg7/image/upload`, formData)
             .then((res)=>{
-                const copy = {...blog}
+                const date = new Date()
+                const copy = {...article}
                 const urlString = res.data.url
                 copy.image = urlString
-                copy.employeeId = localUserObj.id
-                copy.date=Date.now()
+                copy.userId = localUserObj.id
+                copy.date = date.toString()
                 
                 return copy}
             )
-            .then((blog)=>{
-                fetch(`http://localhost:8088/blogs`, {method: "POST",
+            .then((article)=>{
+                fetch(`http://localhost:8088/articles`, {method: "POST",
                     headers:{
                         "Content-Type" : "application/json"
                     },
-                    body: JSON.stringify(blog)
+                    body: JSON.stringify(article)
                 })
                 .then(res=>res.json())
-                .then((res)=>navigate(`blog/${res.id}/view`))
+                .then((res)=>navigate(`/article/${res.id}/view`))
             })}
 
     return  <div className="blog-submit-button-container">
                 <button 
                     className={`btn ${theme?"dark":"light"}`}
-                    onClick={(e)=>{submitBlog(e)}}>
+                    onClick={(e)=>submitArticle(e)}>
                         Submit Article
                 </button>
             </div>

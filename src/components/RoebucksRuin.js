@@ -20,30 +20,30 @@ export const RoebucksRuin = () => {
 		<Route path="/register" element={<Register />} />
 
 		<Route path="*" element={
-			<div className={theme?"light":"dark"}>
-				<NavBar 
-				setTheme={setTheme} 
-				theme={theme}
-				hamburger={hamburger}
-				setHamburger={setHamburger}
-				myBarMenu={myBarMenu}
-				setMyBarMenu={setMyBarMenu}/>
-				
-				<Authorized>
+			
+			
+			<Authorized>
 					<>
-						<ApplicationViews 
-						theme={theme}
-						hamburger={hamburger}
-						setHamburger={setHamburger}
-						myBarMenu={myBarMenu}
-						setMyBarMenu={setMyBarMenu}/>
+					<NavBar 
+					setTheme={setTheme} 
+					theme={theme}
+					hamburger={hamburger}
+					setHamburger={setHamburger}
+					myBarMenu={myBarMenu}
+					setMyBarMenu={setMyBarMenu}/>
+					<ApplicationViews 
+					theme={theme}
+					hamburger={hamburger}
+					setHamburger={setHamburger}
+					myBarMenu={myBarMenu}
+					setMyBarMenu={setMyBarMenu}/>
+					<Footer 
+					setHamburger={setHamburger}
+					setMyBarMenu={setMyBarMenu}/>
 					</>
 				</Authorized>
 				
-				<Footer 
-				setHamburger={setHamburger}
-				setMyBarMenu={setMyBarMenu}/>
-			</div>
+			
 
 		} />
 	</Routes>
