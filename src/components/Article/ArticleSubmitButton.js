@@ -32,7 +32,7 @@ export const ArticleSubmitButton = ({theme, article, image}) => {
                     body: JSON.stringify(article)
                 })
                 .then(res=>res.json())
-                .then((res)=>navigate(`/article/${res.id}/view`))
+                .then((res)=>navigate(`/articles/${res.id}/view`))
             })}
 
     return  <div className="blog-submit-button-container">

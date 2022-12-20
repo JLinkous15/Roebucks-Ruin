@@ -79,10 +79,12 @@
     transition: 500ms ease-in-out;
 }
 
-.logo_light,.logo_dark:hover{
-    transform: scale(110%);
+.logo_dark:hover{
+    transform: scale(110%);    
+}
 
-    
+.logo_light:hover{
+    transform: scale(110%);    
 }
 
 .nav_menu_container{
@@ -133,4 +135,8 @@
 .menuItem{
     display:flex;
     text-decoration: none;
+}
+
+.myBarMenuLi{
+    cursor: pointer;
 }

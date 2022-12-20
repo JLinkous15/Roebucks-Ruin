@@ -51,7 +51,7 @@ export const NavBar = ({
             <div className={`nav_menu_container ${hamburger? "":"active"}`}>
                 <nav className={`nav_menu ${theme?"dark":"light"}`}>
                     <ul className="nav_menu_list">
-                        <li onClick={()=>{setMyBarMenu(!myBarMenu)}}>
+                        <li className="myBarMenuLi"onClick={()=>{setMyBarMenu(!myBarMenu)}}>
                             <div ><FaAngleLeft />My Bar</div>
                         </li>
                         {NavBarData_User.map((listItem, index)=>{
