@@ -27,11 +27,11 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    width: 45%;
+    width: 47.5%;
     background-position: center center;
     background-size: cover;
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
-    margin-bottom: 75px;
+    margin: 3rem 0;
   
   }
   
