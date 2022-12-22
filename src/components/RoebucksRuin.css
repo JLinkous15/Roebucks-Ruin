@@ -45,7 +45,7 @@
     overflow: hidden;
     display: flex;
     position: relative;
-    margin: auto;
+    margin: 0 auto;
   }
 
   .slider{

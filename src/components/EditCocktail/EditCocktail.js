@@ -22,11 +22,13 @@ export const EditCocktail = ({theme, setHamburger, setMyBarMenu}) => {
     const [userCocktailIngredientsArray, setUserCocktailIngredientsArray] = useState([])
     const [image, setImage] = useState({})
     const [userCocktailImage, setUserCocktailImage] = useState("")
-    const [userCocktailTypesArray, setUserCocktailTypesArray] = useState([])
     const [currentCocktailTypeObj, setCurrentCocktailTypeObj] = useState({
         typeId: 0,
-        name:""
-    })
+        cocktailId: 0,
+        type: {
+          name: ""
+        }
+      })
     const [currentCocktailTypesArray, setCurrentCocktailTypesArray] = useState([])
     const [currentIngredient, setCurrentIngredient] = useState({
         ingredientId: 0,
@@ -79,22 +81,14 @@ export const EditCocktail = ({theme, setHamburger, setMyBarMenu}) => {
         
         fetch(`http://localhost:8088/cocktailTypes?cocktailId=${cocktailId}&_expand=type`)
         .then(res=>res.json())
-        .then(setUserCocktailTypesArray)
+        .then(setCurrentCocktailTypesArray)
 
         fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${cocktailId}&_expand=ingredient`)
         .then(res=>res.json())
-        .then(setUserCocktailIngredientsArray)
+        .then(setCurrentCocktailIngredients)
 
 	}, [])
 
-    //add previously posted ingredients to the appropriate array for display
-    useEffect(()=>{
-        const copy = [...currentCocktailIngredients]
-        const copy2 = [...userCocktailIngredientsArray]
-        const allTheCopies = copy.concat(copy2)
-        setCurrentCocktailIngredients(allTheCopies)
-        
-    }, [userCocktailIngredientsArray])
 
     //filter the ingredients by type
 useEffect(()=>{
@@ -120,8 +114,6 @@ useEffect(()=>{
                     setCurrentCocktailTypeObj={setCurrentCocktailTypeObj}
                     setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
                     types={types}
-                    userCocktailTypesArray={userCocktailTypesArray}
-                    setUserCocktailTypesArray={setUserCocktailTypesArray}
                     theme={theme}
                     />
 
@@ -160,8 +152,6 @@ useEffect(()=>{
                     setCocktail={setCocktail}
                     currentCocktailIngredients={currentCocktailIngredients}
                     currentCocktailTypesArray={currentCocktailTypesArray}
-                    userCocktailTypesArray={userCocktailTypesArray}
-                    userCocktailIngredientsArray={userCocktailIngredientsArray}
                     userCocktailImage={userCocktailImage} />
                 </form>
             </div>
@@ -173,8 +163,6 @@ useEffect(()=>{
                 setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
                 currentCocktailIngredients={currentCocktailIngredients}
                 setCurrentCocktailIngredients={setCurrentCocktailIngredients}
-                userCocktailTypesArray={userCocktailTypesArray}
-                setUserCocktailTypesArray={setUserCocktailTypesArray}
                 cocktailId={cocktailId}/>
             </div>
             

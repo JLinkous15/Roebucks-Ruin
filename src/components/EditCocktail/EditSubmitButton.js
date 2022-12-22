@@ -124,7 +124,7 @@ export const EditSubmitButton = (
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify(cocktail)})
+                        body: JSON.stringify(cocktailCopy)})
                         .then(response=>response.json())
                         .then(response=>{
                             const cocktailResponseId = response.id
@@ -132,7 +132,7 @@ export const EditSubmitButton = (
                             currentCocktailIngredients.forEach(thisIngredient=> delete thisIngredient.ingredient)
                             const finalIngredientArray = currentCocktailIngredients.map((ingredient)=>{return ({...ingredient, cocktailId: cocktailResponseId})}) 
                             
-                            currentCocktailTypesArray.forEach(type=> delete type["name"])
+                            currentCocktailTypesArray.forEach(cocktailType=> delete cocktailType.type)
                             const finalTypeArray = currentCocktailTypesArray.map((type)=>{return ({...type, cocktailId: cocktailResponseId})}) 
                             
                             //if ingredient/type exists, use a put. else, use a post. This will probably be within the function body of the .map
@@ -153,7 +153,7 @@ export const EditSubmitButton = (
                                 
                                 return cocktailResponseId
                             })
-                            .then(res=>setTimeout(()=>navigate(`/mybar/${res}/view`),3000)
+                            .then(res=>{return setTimeout(()=>navigate(`/mybar/${res}/view`),3000)}
                             )
                     }
                     }

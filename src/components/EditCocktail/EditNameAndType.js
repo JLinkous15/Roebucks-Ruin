@@ -27,20 +27,24 @@ export const EditNameAndType = (
                 {/* COCKTAIL TYPE */}
                         <select
                         required
+                        id="type"
                         className={theme?"dark":"light"}
                         onChange={(e)=>{
                             const copyArray = [...currentCocktailTypesArray]
                             const copyObj = {...currentCocktailTypeObj}
                             const [valueTypeId, valueName] = e.target.value.split("--")
                             copyObj.typeId = parseInt(valueTypeId)
-                            copyObj.name = valueName
+                            copyObj.type.name = valueName
                             copyArray.push(copyObj)
                             setCurrentCocktailTypeObj({
                                 typeId: 0,
                                 cocktailId: 0,
-                                name:""
-                            })
+                                type: {
+                                  name: ""
+                                }
+                              })
                             setCurrentCocktailTypesArray(copyArray)
+                            document.getElementById(`type`).value = 0
                         }}>
                             <option value="0">Type of Cocktail?</option>
                                 {types.map(type=>{

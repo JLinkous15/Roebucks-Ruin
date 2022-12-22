@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import "../../index.css"
-import "./MyBar.css"
+import { Carrousel } from "../Carrousel"
 
 export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     const navigate = useNavigate()
@@ -16,7 +16,7 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
 
     useEffect(()=>{
         /* fetching data for the specific cocktail using params */
-        fetch(`http://localhost:8088/cocktails?id=${cocktailId}`)
+        fetch(`http://localhost:8088/cocktails?id=${cocktailId}&_expand=userId`)
         .then(res=>res.json())
         .then(res=>setCocktail(res[0]))
         
@@ -45,31 +45,16 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
 
     const deleteCocktail = (e) => {
         e.preventDefault()
-        fetch(`http://localhost:8088/cocktails/${cocktailId}`, {method: "DELETE"})
         Promise.all(thisCocktailsIngredients.map(ingredient=>deleteCocktailIngredients(ingredient)))
         Promise.all(thisCocktailsTypes.map(ingredient=>deleteCocktailTypes(ingredient)))
+        fetch(`http://localhost:8088/cocktails/${cocktailId}`, {method: "DELETE"})
         setTimeout(()=>{navigate(`/mybar`)}, 2000)
     }
     
     return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
-            <div className="top">
-            <div className="leftSide">
-                <label className="recipe_label" htmlFor="recipe">{cocktail.name}</label>
-                <img 
-                src={cocktail.image} 
-                alt="cocktail"
-                className="viewCocktailImage"/>
-                <ul>
-                    {thisCocktailsIngredients.map(cocktailIngredient=>{
-                        return <li key={cocktailIngredient.id}>{cocktailIngredient.volume} 
-                        {cocktailIngredient?.ingredient?.ingredientTypeId===6
-                            ?"muddled"
-                            :cocktailIngredient.ingredientId===3
-                                ?"dashes"
-                                :"ounces"} {cocktailIngredient?.ingredient?.name}</li>
-                    })}
-                </ul>
+            {/* A div for the cocktail in question, ingredients ordered by type (spirit first), notes, and about the bartender. Need a new component for this. */}
+            
                 {cocktail.userId===localUserObj.id
                 ?<>
                     <button 
@@ -81,29 +66,16 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                     </button>
                     <button 
                     className={`btn ${theme?"dark":"light"}`}
-                    onClick={deleteCocktail}>
+                    onClick={()=>{
+                        deleteCocktail()
+                        navigate(`/mybar`)
+                    }}>
                         Delete
                     </button>
                 </>
                 :""}
-                </div>
-                <div className="rightSide">
-                    <p>{cocktail.notes}</p>
-                </div>
-                </div>
-                {/*links and carrousels of user cocktails*/}
-                <ul className="userCocktailList">
-                    {userCocktails.map((userCocktail, index)=>{
-                        return <li key={index} 
-                        className={`userCocktails ${theme?"dark":"light"}`}
-                        style={{backgroundImage: `url(${userCocktail.image})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center"}}>
-                            <Link to={`../../mybar/${userCocktail.id}/view`}
-                            className="link"
-                            >{userCocktail.name}</Link>
-                        </li>})}
-                </ul>
+                <h3 style={{padding: "0 5vw"}}><Link to="/mybar" >See All:</Link></h3>
+                <Carrousel cocktails={userCocktails} theme={theme}/>
             </section>
     
 }

@@ -7,25 +7,9 @@ export const EditRecipe = (
                         theme,
                         setCurrentCocktailTypesArray,
                         currentCocktailIngredients,
-                        setCurrentCocktailIngredients,
-                        userCocktailTypesArray,
-                        setUserCocktailTypesArray,
-                        cocktailId
+                        setCurrentCocktailIngredients
                         }) => {
-    
-    const deleteUserCocktailTypesArrayElement = (e) =>{
-        e.preventDefault()
-        const typeId = parseInt(e.target.id)
-
-        fetch(`http://localhost:8088/cocktailTypes/${typeId}`, {method: "DELETE"})
-        .then(()=>{
-            fetch(`http://localhost:8088/cocktailTypes?cocktailId=${cocktailId}&_expand=type`)
-            .then(res=>res.json())
-            .then(setUserCocktailTypesArray)
-        })
-        
-    }
-
+    console.log(currentCocktailTypesArray)
     return <>
     
                 <ul id="recipeList">
@@ -36,28 +20,20 @@ export const EditRecipe = (
                         {cocktail.name}
                     </li>
 
-                    {userCocktailTypesArray
-                        ?userCocktailTypesArray.map((cocktailType, index)=>{
-                        return <li key={index} id={cocktailType.id}>{cocktailType?.type?.name}
-                            <button 
-                            className={`btn ${theme?"dark":"light"}`}
-                            onClick={(e)=>deleteUserCocktailTypesArrayElement(e)}
-                            >Delete</button>
-                        </li>})
-                        :""
-                    }
-
-                    {currentCocktailTypesArray.map((type, index)=><li key={index}>{type.name}
+                    {currentCocktailTypesArray.map((cocktailType, index)=><li key={index}>{cocktailType?.type?.name}
                         <button 
                         className={`btn ${theme?"dark":"light"}`}
                         onClick={()=>{
+                            if(cocktailType.id){
+                                fetch(`http://localhost:8088/cocktailTypes/${cocktailType.id}`, {method: "DELETE"})
+                            }
                             const copy = [...currentCocktailTypesArray]
                             copy.splice(index, 1)
                             setCurrentCocktailTypesArray(copy)
                         }}>Delete</button></li>)}
 
                     {currentCocktailIngredients.map((cocktailIngredient, index)=>
-                        <li key={index} id={index}>{cocktailIngredient.volume} {cocktailIngredient.ingredient.ingredientTypeId===3? "dashes":"ounces"} {cocktailIngredient.ingredient.name}
+                        <li key={index} id={index}>{cocktailIngredient.volume} {cocktailIngredient.ingredient.ingredientTypeId===3? "dashes":"ounces"} {cocktailIngredient?.ingredient?.name}
                             <button className={`btn ${theme?"dark":"light"}`}
                             onClick={(e)=>{
                                 if(cocktailIngredient.id){
@@ -70,7 +46,7 @@ export const EditRecipe = (
                             }}>Delete</button></li>
                     )}
                     
-                    <li>{cocktail.method.name}</li>
+                    <li>{cocktail?.method?.name}</li>
                 </ul>
                 <div id="previewImage">
                     <img id="previewImage_img" src={cocktail.image} alt="cocktail image"/>

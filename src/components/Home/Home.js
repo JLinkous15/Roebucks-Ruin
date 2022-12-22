@@ -13,7 +13,7 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
     const [secondRow, setSecondRow] = useState([])
     const [thirdRow, setThirdRow] = useState([])
     const [cocktails, setCocktails] = useState([])
-    const [slider, setSlider] = useState(0)
+ 
 
     useEffect(()=>{
         fetch(`http://localhost:8088/articles?expand=articleTopic&_expand=user`)
@@ -81,13 +81,13 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
                 </div>
                 {/* Carrousel 1 */}
                 <h3 style={{padding: "0 5vw"}}>Most Recent Cocktails:</h3>
-                <Carrousel cocktails={cocktails} slider={slider} setSlider={setSlider} theme={theme}/>
+                <Carrousel cocktails={cocktails} theme={theme}/>
                 {/*4th and 5th most recent blog posts*/}
                 <div className="doubleHero-container">
                 <DoubleHero secondRow={secondRow} theme={theme} />
                 </div>
                 {/* Carrousel 2 */}
                 <h3 style={{padding: "0 5vw"}}>Most Recent Cocktails:</h3>
-                <Carrousel cocktails={cocktails} slider={slider} setSlider={setSlider} theme={theme}/>
+                <Carrousel cocktails={cocktails} theme={theme}/>
     </section>
 }
