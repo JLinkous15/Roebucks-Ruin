@@ -5,10 +5,9 @@
     color: white;
     list-style: none;
     text-decoration: none;
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 17rem;
-    bottom: 0;
 }
 
 ul {

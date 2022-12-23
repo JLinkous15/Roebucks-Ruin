@@ -51,8 +51,8 @@
 
 .mybar_cocktailList{
     text-decoration: none;
-    width: 25vw;
-    height:25vw;
+    width: 25%;
+    height:25%;
     background-size: cover;
     background-position: center center;
     display: flex;
