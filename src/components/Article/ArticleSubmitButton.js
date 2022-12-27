@@ -15,12 +15,11 @@ export const ArticleSubmitButton = ({theme, article, image}) => {
 
             Axios.post(`https://api.cloudinary.com/v1_1/dwbxabkg7/image/upload`, formData)
             .then((res)=>{
-                const date = new Date()
                 const copy = {...article}
                 const urlString = res.data.url
                 copy.image = urlString
                 copy.userId = localUserObj.id
-                copy.date = date.toString()
+                copy.date = Date.now()
                 
                 return copy}
             )
