@@ -57,6 +57,7 @@
     border: none;
     background-color: transparent;
     padding: 25px;
+    transition: 500ms ease-in-out;
 }
 
 .switch_dark{

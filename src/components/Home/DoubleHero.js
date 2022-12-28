@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { DateConverter } from "../DateConverter"
 
 export const DoubleHero = ({secondRow, theme}) => {
 
@@ -11,7 +12,7 @@ export const DoubleHero = ({secondRow, theme}) => {
                         className={`doubleHeroLabel ${theme?"dark":"light"}`}>{`${article?.articleTopic?.name}`}</label>
                         <h1 className="doubleHero-item">{article.title}</h1>
                         <h3 className="doubleHero-item">{article.subTitle}</h3>
-                        <h4 className="doubleHero-item">{article.date.toString()} | by: {article?.user?.handle}</h4>
+                        <h4 className="doubleHero-item"><DateConverter date={article.date} /> | by: {article?.user?.handle}</h4>
                     </div>
                 </Link>
                 </>})}

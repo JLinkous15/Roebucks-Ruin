@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import "../../index.css"
 import { Carrousel } from "../Carrousel"
+import { HeroCocktail } from "../HeroCocktail"
 
 export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
     const navigate = useNavigate()
@@ -16,7 +17,7 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
 
     useEffect(()=>{
         /* fetching data for the specific cocktail using params */
-        fetch(`http://localhost:8088/cocktails?id=${cocktailId}&_expand=userId`)
+        fetch(`http://localhost:8088/cocktails?id=${cocktailId}&_expand=user&_expand=method`)
         .then(res=>res.json())
         .then(res=>setCocktail(res[0]))
         
@@ -54,7 +55,14 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
     return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
             {/* A div for the cocktail in question, ingredients ordered by type (spirit first), notes, and about the bartender. Need a new component for this. */}
-            
+                <HeroCocktail cocktail={cocktail} theme={theme} types={thisCocktailsTypes}/>
+                <ul>
+                    {thisCocktailsIngredients.map((cocktail, index)=>
+                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.ingredient.name}
+                        </li>
+                    )}
+                </ul>
+                <p>{cocktail.notes}</p>
                 {cocktail.userId===localUserObj.id
                 ?<>
                     <button 

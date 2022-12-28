@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "../../index.css"
-import "./MyBar.css"
+import "./CreateCocktail.css"
 import { NameAndType } from "./NameAndType"
 import { Ingredients } from "./Ingredients"
 import { Methods } from "./Methods"
@@ -72,7 +72,7 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientId])
 
-    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`createCocktail ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
             <div className="thebuild">
             <h2>Create a Cocktail</h2>

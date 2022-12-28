@@ -1,71 +1,42 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { DateConverter } from "../DateConverter"
+import { Pagination } from "../Pagination"
+import { CocktailList } from "./CocktailList"
 import "./MyBar.css"
 
-export const MyBar = ({theme, hamburger, setHamburger, setMyBarMenu}) => {
-    const [userCocktails, setUserCocktails] = useState([])
-    const [latestUserCocktail, setLatestUserCocktail] = useState({})
-    const [latestCocktailType, setLatestCocktailType] = useState([])
-    const [latestCocktailIngredients, setLatestCocktailIngredients] = useState([])
-    const [ingredientTypes, setIngredientTypes] = useState([])
-    const localUser = localStorage.getItem("roebucks_user")
-    const localUserObj = JSON.parse(localUser)
+export const MyBar = ({theme, setHamburger, setMyBarMenu}) => {
+const [userCocktails, setUserCocktails] = useState([])
+const [currentPage, setCurrentPage] = useState(1)
+const [cocktailsPerPage, setCocktailsPerPage] = useState(9)
 
-    useEffect(()=>{
-        fetch(`http://localhost:8088/cocktails?userId=${localUserObj.id}&_expand=method`)
-        .then(res=>res.json())
-        .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0})
-            const latest = copy.shift()
-            setUserCocktails(copy)
-            setLatestUserCocktail(latest)
-        })
+const localUser = localStorage.getItem("roebucks_user")
+const localUserObj = JSON.parse(localUser)
 
-        fetch(`http://localhost:8088/ingredientTypes`)
-        .then(res=>res.json())
-        .then(setIngredientTypes)
-    }, [])
+useEffect(()=>{
+    fetch(`http://localhost:8088/cocktails?userId=${localUserObj.id}`)
+    .then(res=>res.json())
+    .then(setUserCocktails)
+}, [])
 
-    useEffect(()=>{
-        fetch(`http://localhost:8088/cocktailTypes?cocktailId=${latestUserCocktail.id}&_expand=type`)
-        .then(res=>res.json())
-        .then(setLatestCocktailType)
-        
-        fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${latestUserCocktail.id}&_expand=ingredient`)
-        .then(res=>res.json())
-        .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a?.ingredient?.ingredientTypeId > b?.ingredient?.ingredientTypeId){
-                    return 1
-                }else if(a?.ingredient?.ingredientTypeId < b?.ingredient?.ingredientTypeId){
-                    return -1
-                }
-                return 0})
-            setLatestCocktailIngredients(copy)})
-        
-    }, [latestUserCocktail])
+//current posts via pagination
+const indexOfLastPost = currentPage * cocktailsPerPage
+const indexOfFirstPost = indexOfLastPost - cocktailsPerPage
+const currentCocktails = userCocktails.slice(indexOfFirstPost, indexOfLastPost)
 
-    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
-    setMyBarMenu(true)}}>
-        <div className="mybar-latest">
-            <Link className="myBar-latest-image" style={{backgroundImage: `url(${latestUserCocktail.image})`}}>
-                <h3>{latestUserCocktail.name}</h3>
-                <h4><DateConverter date={latestUserCocktail.dateCompleted} /></h4>
-            </Link>
-        <div className="myBar-latest-recipe">
-            <ul>
-                {latestCocktailIngredients.map((latestIngredient, index)=>{
-                    return <li key={index}>{latestIngredient.volume} {latestIngredient?.ingredient?.name}</li>
-                })}
-            </ul>
-        </div>
-        </div>
-    </section>
+//paginate
+const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+}
+
+    return <section className={`createCocktail ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
+        setMyBarMenu(true)}}>
+                <select 
+                className={`myBar-pageSelect ${theme?"dark":"light"}`}
+                onChange={(e)=>{setCocktailsPerPage(parseInt(e.target.value))}}>
+                    <option value="9">9</option>
+                    <option value="18">15</option>
+                    <option value="27">27</option>
+                </select>
+                <CocktailList userCocktails = {currentCocktails} />
+                <Pagination cocktailsPerPage={cocktailsPerPage} totalCocktails={userCocktails.length} paginate={paginate} theme={theme} />
+            </section>
 }
