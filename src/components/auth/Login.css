@@ -1,18 +1,20 @@
+@import "../../index.css";
 
 .container--login{
+    background-color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-image: url("../../../public/images/DirtyMartini.jpg");
     background-size: 100vw;
-    background-position: center center
-
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
 }
 
-@media (max-width: 1283px) {
+@media (max-width: 1166px) {
     .container--login{
         background-size: 100vh;
         margin: auto;
@@ -49,10 +51,10 @@
 }
 
 .form--container{
-    background-color: rgba(225, 225, 225, 0.5);
+    background-color: rgba(225, 225, 225);
     border: 2px solid var(--background-color);
     margin: 2rem;
-    border-radius: 1.5rem;
+    border-radius: .5rem;
     filter: drop-shadow(0 0 1rem black);
 }
 

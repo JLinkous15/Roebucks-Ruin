@@ -1,1 +1,142 @@
 @import "../index.css";
+
+:root{
+    --slider-padding: 5rem;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 70vw;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 50px;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+  
+  }
+  
+  .hero:hover{
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.1);
+    transition: 1000ms;
+  }
+  
+  .hero-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .heroLabel{
+    font-size: 16px;
+    padding: 1rem 2rem;
+  }
+  
+  .hero-item{
+    padding: 2rem;
+    color: white;
+  }
+
+  .carrousel-slider{
+    width: 90vw;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .slider{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: 33%;
+    transition: transform 500ms ease;
+  }
+
+  .sliderButton{
+    border:none;
+    position: absolute;
+    width: var(--slider-padding);
+    height: 5rem;
+    font-size: 2.5rem;
+    opacity: 20%;
+    z-index: 100;
+  }
+
+  .sliderButton:hover{
+    font-size: 3rem;
+    opacity: 30%;
+  }
+
+  .leftSlider{
+    height: 100%;
+    left: 0;
+    transform: translateX(10px)
+  }
+ 
+  .rightSlider{
+    height: 100%;
+    right: 0;
+    transform: translateX(-10px)
+
+  }
+
+  .slideItem-container{
+    flex: 0 0 25%;
+    padding: 25px 10px;
+  }
+
+
+  .sliderItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center center;
+    aspect-ratio: 1/1;
+    font-size: 2rem;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+    transition: 
+        transform 200ms ease-in-out,
+        box-shadow 200ms ease-in-out;
+  }
+
+  .sliderItem:hover{
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.1);
+    transform: scale(110%);
+  }
+
+  .page-list{
+    display: flex;
+    flex-direction: row;
+    position:absolute;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .page-item{
+    padding: 1rem 1.5rem;
+    margin: 2px;
+  }
+
+
+  @media (max-width: 1360px){
+    .sliderItem{
+        font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 1000px){
+    .sliderItem{
+        font-size: 1rem;
+    }
+  }

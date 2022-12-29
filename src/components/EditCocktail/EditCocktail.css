@@ -1,0 +1,41 @@
+@import "../../index.css";
+
+:root{
+    --recipe-width: 300px
+}
+
+.mybar{
+    display:flex;
+    flex-direction: row;
+}
+
+.fieldset_post{
+    padding: 1rem 0;
+}
+
+#previewImage_img,.notes{
+    width: var(--recipe-width)
+}
+
+.viewCocktailImage{
+    width: 500px;
+}
+
+.recipe_label{
+    display: block;
+}
+
+.userCocktailList{
+    display:flex;
+}
+
+.userCocktails{
+    padding: 2rem;
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+

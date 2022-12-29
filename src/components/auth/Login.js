@@ -1,11 +1,30 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
 
 export const Login = () => {
     const [email, set] = useState("")
+    const [cocktails, setCocktails] = useState([])
+    const [backgroundCocktail, setBackgroundCocktail] = useState({})
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        const id = Math.floor(Math.random() * cocktails.length + 1)
+
+        fetch(`http://localhost:8088/cocktails`)
+        .then(res=>res.json())
+        .then((res)=>{setCocktails(res)})
+        
+    }, [])
+
+    useEffect(()=>{
+        const id = Math.floor(Math.random() * cocktails.length + 1)
+        fetch(`http://localhost:8088/cocktails?id=${id}`)
+            .then(res=>res.json())
+            .then((res)=>setBackgroundCocktail(res[0])
+)
+    }, [cocktails])
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -17,7 +36,8 @@ export const Login = () => {
                     const user = foundUsers[0]
                     localStorage.setItem("roebucks_user", JSON.stringify({
                         id: user.id,
-                        staff: user.isStaff
+                        staff: user.isStaff,
+                        darkMode: user.darkMode
                     }))
 
                     navigate("/")
@@ -29,11 +49,13 @@ export const Login = () => {
     }
 
     return (
-        <main className="container--login">
+        <main className="container--login"
+            style={{
+                backgroundImage: `url(${backgroundCocktail?backgroundCocktail.image:"https://res.cloudinary.com/dwbxabkg7/image/upload/v1670860377/OldFashioned_t3gi32.jpg"})`
+                }} >
                     <img alt="RR" src="../../icons/Roebucksruin_Bug.svg" className="logo"/>
                     <div className="title">
-                        <h1>Roebuck's Ruin</h1>
-                        <h2>an Olive-Free Zone</h2>
+                        <h1 style={{color: "#ffffff"}}>Roebuck's Ruin</h1>
                     </div>
             <section className="form--container">
                 

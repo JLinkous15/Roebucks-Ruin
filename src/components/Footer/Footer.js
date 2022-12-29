@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
-import { FaFacebookSquare, FaInstagramSquare, FaLinkedinSquare, FaTwitterSquare} from "react-icons/fa"
+import { FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaTwitterSquare} from "react-icons/fa"
 import "./Footer.css"
 
-export const Footer = () => {
+export const Footer = ({setHamburger, setMyBarMenu}) => {
 
     return (
-    <footer className="footer-container">
+    <footer className="footer-container" onClick={(e)=>{setHamburger(true)
+        setMyBarMenu(true)}}>
         <div className="footer-box">
             <label forhtml="about">About</label> 
             <ul className="about_list">
@@ -39,6 +40,12 @@ export const Footer = () => {
                     <FaFacebookSquare style={{color: "white"}} />
                 </Link>
                 <div>Facebook</div>
+            </li>
+            <li className="socialMedia_list_item">
+                <Link>
+                    <FaLinkedin style={{color: "white"}} />
+                </Link>
+                <div>LinkedIn</div>
             </li>
         </ul>
     </footer>)

@@ -13,7 +13,9 @@ export const NameAndType = (
                 <label htmlFor="name-fieldset">Describe your cocktail.</label>
                 <fieldset className="fieldset_post">
                 {/* COCKTAIL NAME*/}
-                        <input type="text" 
+                        <input 
+                        required
+                        type="text" 
                         placeholder="Name your Cocktail" 
                         className={theme?"dark":"light"}
                         onChange={(e)=>{
@@ -22,7 +24,8 @@ export const NameAndType = (
                             setCocktail(copy)
                         }}/>
                 {/* COCKTAIL TYPE */}
-                        <select 
+                        <select
+                        required
                         className={theme?"dark":"light"}
                         onChange={(e)=>{
                             const copyArray = [...currentCocktailTypesArray]

@@ -2,53 +2,97 @@ import "./NavBar.css"
 import "../../index.css"
 import { Link, useNavigate } from "react-router-dom"
 import { BiX, BiMenu } from "react-icons/bi";
-import { NavBarData_User } from "./NavBarData";
-import { useState } from "react";
+import { NavBarData_User, MyBarData_User } from "./NavBarData";
+import { FaAngleLeft } from "react-icons/fa";
+import { useEffect } from "react";
 
-export const NavBar = ({setTheme, theme}) => {
-    const[hamburger, setHamburger]=useState(false)
+export const NavBar = ({
+    setTheme, 
+    theme, 
+    hamburger, 
+    setHamburger, 
+    myBarMenu, 
+    setMyBarMenu}) => {
+    
     const navigate = useNavigate()
-  
+    const localUser = localStorage.getItem("roebucks_user")
+    const localUserObj = JSON.parse(localUser)
+    
+	useEffect(()=>{
+	fetch(`http://localhost:8088/users?id=${localUserObj.id}`)
+	.then(res=>res.json())
+	.then(res=>setTheme(res[0].darkMode))
+	},[])
+
     return (
         <div className="nav">
             <ul className={`navbar ${theme?"dark":"light"}`}>
                 <li className="navbar_item">
-                    <Link className="navbar_link" to="/"><img className={theme?"logo_light":"logo_dark"} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
+                    <Link to="/"><img className={`navbar_image ${theme?"logo_light":"logo_dark"}`} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
                 </li>
                 <div className="navbar_item right">
                     <button className="btnDark"
-                    onClick={(e)=>{setTheme(!theme)}}>
-                        <img className={`navbar_image toggle${theme?"light":"dark"}`} 
+                    onClick={(e)=>{
+                        setTheme(!theme)}}>
+                        <img className={`navbar_image ${theme?"switch_light":"switch_dark"}`} 
                         src={theme?"../../icons/darkmode_dark.svg":"../../icons/darkmode_light.svg"} 
-                        alt="moon" style={theme?{}:{}}/>
+                        alt="moon"/>
                     </button>
                     <li className="navbar_bars">
-                        <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{setHamburger(!hamburger)}}>
-                            {hamburger?<BiX />:<BiMenu />}
+                        <Link className={`navbar_image bars ${theme?"dark":"light"}`} onClick={()=>{
+                            setHamburger(!hamburger)
+                            setMyBarMenu(true)
+                        }}>
+                            {hamburger?<BiMenu className="navbar_image"/>:<BiX className="navbar_image"/>}
                         </Link>
                     </li>
                 </div>
             </ul>
-            <div className="nav_menu_container">
-                <nav className={`nav_menu${hamburger?"_active":""} ${theme?"dark":"light"}`}>
+            <div className={`nav_menu_container ${hamburger? "":"active"}`}>
+                <nav className={`nav_menu ${theme?"dark":"light"}`}>
                     <ul className="nav_menu_list">
+                        <li className="myBarMenuLi"onClick={()=>{setMyBarMenu(!myBarMenu)}}>
+                            <div ><FaAngleLeft />My Bar</div>
+                        </li>
                         {NavBarData_User.map((listItem, index)=>{
-                                return (
-                                    <li className="nav_menu_content" key={index}>
-                                        <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path} 
-                                        onClick={()=>{setHamburger(!hamburger)}}>
-                                            <div className="menuItem">{listItem.icon}{listItem.title}</div>
-                                        </Link>
-                                    </li>
+                            return (
+                                <li 
+                                className="nav_menu_content" 
+                                key={index} 
+                                onClick={(e)=>{setHamburger(true)
+                                    setMyBarMenu(true)}}>
+                                    <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path}>
+                                        <div className="menuItem">{listItem.icon}{listItem.title}</div>
+                                    </Link>
+                                </li>
                                 )
                             })}
                     <button className={`btn ${theme?"light":"dark"}`}
                     onClick={()=>{
+                        setHamburger(true)
+                        setMyBarMenu(true)
                         localStorage.removeItem("roebucks_user", { replace : true })
                         navigate("/")
                     }}>
                         Logout
                     </button>
+                    </ul>
+                    
+                </nav>
+            </div>
+            <div className={`mybarmenu_menu_container ${hamburger? "":"active"} ${myBarMenu? "":"toggle"}`}>
+                <nav className={`nav_menu ${theme?"dark":"light"}`}>
+                    <ul className="nav_menu_list">
+                        {MyBarData_User.map((listItem, index)=>{
+                            return (
+                                <li className="nav_menu_content" key={index} onClick={(e)=>{setHamburger(true)
+                                    setMyBarMenu(true)}}>
+                                    <Link className={theme?"nav-text dark":"nav-text light"} to={listItem.path}>
+                                        <div className="menuItem">{listItem.title}</div>
+                                    </Link>
+                                </li>
+                                )
+                            })}
                     </ul>
                 </nav>
             </div>

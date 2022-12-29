@@ -18,21 +18,21 @@
     justify-content: space-between;
     list-style: none;
     padding: .5rem;
-    height: 2rem;
+    height: 3rem;
     transition: 500ms ease-in-out;
 }
 
 .logo_dark{
-   width: 2.5rem;
+   width: 3.75rem;
     background-color: #fff;
     border-radius: 2rem;
-    border: solid 3px var(--background-light);
+    border: solid 6px var(--background-light);
     padding: .5rem;
     transition: 500ms ease-in-out;
 }
 
 .logo_light{
-    width: 2.5rem;
+    width: 3.75rem;
     background-color: #fff;
     border-radius: 2rem;
     border: solid 6px var(--background-dark);
@@ -57,13 +57,14 @@
     border: none;
     background-color: transparent;
     padding: 25px;
+    transition: 500ms ease-in-out;
 }
 
-.toggledark{
+.switch_dark{
     height: 2rem;
     transition: 500ms ease-in-out;
 }
-.togglelight{
+.switch_light{
     height: 2rem;
     content: var(--color-dark);
     transition: 500ms ease-in-out;
@@ -79,34 +80,47 @@
     transition: 500ms ease-in-out;
 }
 
-/* side menu */
+.logo_dark:hover{
+    transform: scale(110%);    
+}
+
+.logo_light:hover{
+    transform: scale(110%);    
+}
+
 .nav_menu_container{
     display: inline;
     position: fixed;
     right: 0;
-    transition: 500ms ease-in-out;
-    
-}
-
-.nav_menu{
-    width: 11rem;
-    padding: 2rem;
-    display:none;
-    transform: translateX(100vw);
+    width: 225px;
+    transform: translateX(100%);
+    z-index: 999;
     transition: 500ms ease-in-out;
 }
 
-.nav_menu_active{
-    width: 11rem;
-    padding: 2rem;
+.mybarmenu_menu_container{
+    display: inline;
+    position: fixed;
+    right: 0;
+    transform: translateX(100%);
+    width: 225px;
     transition: 500ms ease-in-out;
-    
+}
+
+.active{
+    transform: translateX(0%);
+}
+
+.toggle{
+    transform: translateX(-100%);
 }
 
 .nav_menu_list{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 3rem;
     transition: 500ms ease-in-out;
 }
 
@@ -122,4 +136,8 @@
 .menuItem{
     display:flex;
     text-decoration: none;
+}
+
+.myBarMenuLi{
+    cursor: pointer;
 }

@@ -1,19 +1,13 @@
-*{
-    margin: 0;
-}
+@import "../../index.css";
 
 .footer-container{
     background-color: black;
     color: white;
     list-style: none;
     text-decoration: none;
-    position: fixed;
+    position: absolute;
     width: 100%;
-    bottom: 0;
-}
-
-.footer-box{
- 
+    height: 17rem;
 }
 
 ul {

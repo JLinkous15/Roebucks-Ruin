@@ -1,4 +1,4 @@
-export const Ingredients = ( {
+export const EditIngredients = ( {
     currentIngredient, 
     setCurrentIngredient, 
     ingredients, 
@@ -6,7 +6,7 @@ export const Ingredients = ( {
     ingredientTypes, 
     filteredIngredients, 
     currentCocktailIngredients,
-    setCurrentCocktailIngredients, 
+    setCurrentCocktailIngredients,
     theme} ) => {
 
 const handleIngredientButton = (event) => {
@@ -17,10 +17,13 @@ const handleIngredientButton = (event) => {
                 copyIngredientsArray.push(copyIngredient)
                 setCurrentCocktailIngredients(copyIngredientsArray)
                 setCurrentIngredient({
-                    name: "",
-                    volume: 0.00,
-                    ingredientTypeId: 0
-                    })
+                    ingredientId: 0,
+                    volume: 0,
+                    ingredient: {
+                      id: 0,
+                      name: "",
+                      ingredientTypeId: 0
+                    }})
                 document.getElementById(`volume`).value = "number of ounces/dashes"
                 document.getElementById(`ingredientFilterSelect`).value = "0"
                 document.getElementById(`ingredientSelect`).value = "0"
@@ -32,7 +35,8 @@ const handleIngredientButton = (event) => {
                 <label htmlFor="ingredient-fieldset">What are your ingredients?</label>
                 <fieldset className="fieldset_post">
                 {/* VOLUME */}
-                    <input type="number"
+                    <input 
+                    type="number"
                     step="0.125"
                     max="4"
                     min="0"
@@ -40,58 +44,59 @@ const handleIngredientButton = (event) => {
                     className={theme?"dark":"light"} 
                     placeholder="number of ounces/dashes"
                     onChange={(e)=>{
-                        const copy = currentIngredient
+                        const copy = {...currentIngredient}
                         copy.volume = parseFloat(e.target.value)
                         setCurrentIngredient(copy)
                         
                     }}/>
                 {/* SETFILTEREDINGREDIENTS */}
-                    <select  
+                    <select
                     id="ingredientFilterSelect"
                     defaultValue={currentIngredient.ingredientTypeId}
                     className={theme?"dark":"light"}
                     onChange={(e)=>{
                         const copyIngredients = [...ingredients]
-                        const copyCurrentIngredient = {...currentIngredient}
                         const value = parseInt(e.target.value)
-                        const filteredCopy = copyIngredients.filter((ingredient)=> ingredient.id===value)
+                        const filteredCopy = copyIngredients.filter((ingredient)=>ingredient?.ingredientType?.id===value)
                         setFilteredIngredients(filteredCopy)
-                        copyCurrentIngredient.ingredientTypeId = value
-                        copyCurrentIngredient.name=""
-                        setCurrentIngredient(copyCurrentIngredient)
-                        const ingredient = document.getElementById("ingredientSelect")
-                        ingredient.value = "0"
+
+                        const copyIngredient = {...currentIngredient}
+                        copyIngredient.ingredient.ingredientTypeId = value
+                        setCurrentIngredient(copyIngredient)
                     }}>
                         <option value="0">What type of ingredient?</option>
-                        {ingredientTypes.map((ingredient)=>{
+                        {ingredientTypes.map((type, index)=>{
                             return <option 
-                            key={ingredient.id} 
-                            value={ingredient.id}>
-                                    {ingredient.name}
+                            key={index} 
+                            value={type.id}>
+                                    {type.name}
                                 </option> 
                             })}
                     </select>
 
                 {/* INGREDIENTS */}
 
-                    <select 
+                    <select
                     id="ingredientSelect"
                     className={theme?"dark":"light"}
                     onChange={(e)=>{
-                        const value = e.target.value
                         const copy = {...currentIngredient}
-                        copy.name = value
+                        const [targetId, targetName] = e.target.value.split("--")
+                        copy.ingredientId = parseInt(targetId)
+                        copy.ingredient.name = targetName
                         setCurrentIngredient(copy)
                     }}>
                     <option value="0">Ingredient Name?</option>
-                        {filteredIngredients.map((ingredient)=>{
-                            return <option key={ingredient.id} value={ingredient.name}>{ingredient.name}</option> 
+                        {filteredIngredients.map((ingredient, index)=>{
+                            return <option key={index} name={ingredient.name} value={`${ingredient.id}--${ingredient.name}`}>{ingredient.name}</option> 
                         })}
                     </select>
+                    
+                {/* BUTTON */}
+
                     <button className={`btn ${theme?"dark":"light"}`}
                     onClick={(event)=>
                         handleIngredientButton(event)
-                    
                     }>Add to Cocktail</button>
                 </fieldset>
             </>)
