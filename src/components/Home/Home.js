@@ -34,8 +34,8 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
                     return 1 
                 }
             return 0})
-            copy.slice(0, 2)
-            setSecondRow(copy)
+            
+            setSecondRow(copy.slice(0, 2))
         })
         
         fetch(`http://localhost:8088/articles?_expand=articleTopic&_expand=user`)
@@ -48,8 +48,8 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
                     return 1 
                 }
             return 0})
-            copy.slice(2, 4)
-            setThirdRow(copy)
+            
+            setThirdRow(copy.slice(2, 4))
         })
         
         fetch(`http://localhost:8088/cocktails`)
@@ -68,6 +68,8 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
 
     },[])
 
+    console.log(secondRow)
+
     return <section className={`componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
                 {/*hero for latest blog post */}
@@ -77,14 +79,14 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
                     ><Hero theme={theme} article={article} /></Link>})}
                 {/* 2nd and 3rd most recent blog posts */}
                 <div className="doubleHero-container">
-               <DoubleHero secondRow={secondRow} theme={theme} />
+               <DoubleHero array={secondRow} theme={theme} />
                 </div>
                 {/* Carrousel 1 */}
                 <h3 style={{padding: "0 5vw"}}>Most Recent Cocktails:</h3>
                 <Carrousel cocktails={cocktails} theme={theme}/>
                 {/*4th and 5th most recent blog posts*/}
                 <div className="doubleHero-container">
-                <DoubleHero secondRow={secondRow} theme={theme} />
+                <DoubleHero array={thirdRow} theme={theme} />
                 </div>
                 {/* Carrousel 2 */}
                 <h3 style={{padding: "0 5vw"}}>Most Recent Cocktails:</h3>

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import { DateConverter } from "../DateConverter"
 
-export const DoubleHero = ({secondRow, theme}) => {
+export const DoubleHero = ({array, theme}) => {
 
     return <>
-                {secondRow.map(article=>{return <>
+                {array.map(article=>{return <>
                 <Link to={`/articles/${article.id}/view`} className="doubleHero" style={{backgroundImage: `url(${article.image})`}} key={article.id}>
                     <div className="doubleHero-content">
                         <label 
