@@ -4,7 +4,7 @@ export const CocktailList = ({userCocktails}) => {
 
     return <div className="cocktail-list">
             {userCocktails.map(cocktail => {
-                return (<div className="cocktail-list-item">
+                return (<div className="cocktail-list-item" key={cocktail.id}>
                             <Link to={`/mybar/${cocktail.id}/view`}
                             style={{backgroundImage: `url(${cocktail.image})`}}
                             className="cocktail-list-link">

@@ -120,3 +120,19 @@ a{
     color: #fff;
 }
 
+@media (max-width: 1000px) {
+  h1{
+    font-size: 4rem;
+    font-weight: 700;
+  }
+  
+  h2{
+    font-size: 3rem;
+    font-weight: 400;
+  }
+  
+  h3{
+    font-size: 2rem;
+    font-weight: 100;
+  }
+}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 //accepts an array of cocktail objects with a length of 11 to produce a sliding carrousel
 export const Carrousel = ({cocktails, theme}) => {
     const [slider, setSlider] = useState(0)
-    const sliderLimiter = Math.ceil((cocktails.length / 4) - 1)
+    const sliderLimiter = Math.ceil(cocktails.length / 4)-1
 
     return <div className="carrousel-slider">
                 <button className={`sliderButton leftSlider ${theme?"dark":"light"}`}
@@ -28,7 +28,7 @@ export const Carrousel = ({cocktails, theme}) => {
                 <button className={`sliderButton rightSlider ${theme?"dark":"light"}`}
                 onClick={(e)=>{
                     e.preventDefault()
-                    if(slider <= sliderLimiter){
+                    if(slider < sliderLimiter){
                     const copy = slider
                     setSlider(copy + 1)  
                 }}}><FaChevronRight /></button>

@@ -133,6 +133,10 @@
     .sliderItem{
         font-size: 1.5rem;
     }
+    .heroLabel{
+      font-size: 12px;
+      padding: 1rem 2rem;
+    }
   }
 
   @media (max-width: 1000px){

@@ -33,7 +33,7 @@ const paginate = (pageNumber) => {
                 className={`myBar-pageSelect ${theme?"dark":"light"}`}
                 onChange={(e)=>{setCocktailsPerPage(parseInt(e.target.value))}}>
                     <option value="9">9</option>
-                    <option value="18">15</option>
+                    <option value="18">18</option>
                     <option value="27">27</option>
                 </select>
                 <CocktailList userCocktails = {currentCocktails} />
