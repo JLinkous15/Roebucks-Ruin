@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, redirect, useNavigate } from "react-router-dom"
 import "./Home.css"
 import "../../index.css"
 import { useEffect, useState } from "react"
@@ -13,6 +13,10 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
     const [secondRow, setSecondRow] = useState([])
     const [thirdRow, setThirdRow] = useState([])
     const [cocktails, setCocktails] = useState([])
+    const [filteredCocktails, setFilteredCocktails] = useState(cocktails)
+    const [cocktailTypes, setCocktailTypes] = useState([])
+    const localUser = localStorage.getItem("roebucks_user")
+    const localUserObj = JSON.parse(localUser)
  
 
     useEffect(()=>{
@@ -27,48 +31,39 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
         fetch(`http://localhost:8088/articles?_expand=articleTopic&_expand=user`)
         .then(res=>res.json())
         .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0})
-            
+            const copy = res.reverse()
             setSecondRow(copy.slice(0, 2))
         })
         
         fetch(`http://localhost:8088/articles?_expand=articleTopic&_expand=user`)
         .then(res=>res.json())
         .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0})
-            
+            const copy = res.reverse()
             setThirdRow(copy.slice(2, 4))
         })
         
         fetch(`http://localhost:8088/cocktails`)
         .then(res=>res.json())
         .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0})
-            copy.length = 11
-            setCocktails(copy)
+            res.reverse()
+            res.length = 10
+            setCocktails(res)
         })
 
+        fetch(`http://localhost:8088/types`)
+        .then(res=>res.json())
+        .then(setCocktailTypes)        
     },[])
 
-    console.log(secondRow)
+    useEffect(()=>{
+        fetch(`http://localhost:8088/cocktailTypes?typeId=4&_expand=cocktail`)
+        .then(res=>res.json())
+        .then((response)=>{
+            let filtered = []
+            response.forEach(res=>filtered.push(res.cocktail))
+            setFilteredCocktails(filtered.reverse())
+        })
+    }, [cocktails])
 
     return <section className={`componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
@@ -89,7 +84,7 @@ export const Home = ({theme, setHamburger, setMyBarMenu}) => {
                 <DoubleHero array={thirdRow} theme={theme} />
                 </div>
                 {/* Carrousel 2 */}
-                <h3 style={{padding: "0 5vw"}}>Most Recent Cocktails:</h3>
-                <Carrousel cocktails={cocktails} theme={theme}/>
+                <h3 style={{padding: "0 5vw"}}>Most Recent Fixxes:</h3>
+                <Carrousel cocktails={filteredCocktails} theme={theme}/>
     </section>
 }

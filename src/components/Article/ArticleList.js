@@ -13,19 +13,9 @@ export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
         fetch(`http://localhost:8088/articles?_expand=articleTopic`)
         .then(res=>res.json())
         .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0}
-            )
-            setArticles(copy)
+            setArticles(res.reverse())
         })
     }, [])
-
-    console.log(articles)
  
     return (<section className={`ArticleList componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
             setMyBarMenu(true)}}>
@@ -33,6 +23,12 @@ export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
                 {localUserObj.staff
                     ?<Link to="/articles/articlewrite" className={theme?"light":"dark"}>Write a new article.</Link>
                     :""}
-                {articles.map(article=>{return <Hero article={article}/>})}
+                {articles.map(article=>{
+                return <Link to={`/articles/${article.id}/view`}
+                style={{width: "100%",
+                marginBottom: "25px"}}
+                key={article.id}>
+                    <Hero article={article}/>
+                </Link>})}
             </section>)
 }

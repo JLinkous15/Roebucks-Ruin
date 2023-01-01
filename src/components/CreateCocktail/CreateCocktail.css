@@ -1,3 +1,8 @@
 .createCocktail{
     padding: 75px 75px;
 }
+
+.thebuild{
+    display: flex;
+    flex-direction: row;
+}

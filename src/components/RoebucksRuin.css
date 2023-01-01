@@ -76,18 +76,17 @@
   .leftSlider{
     height: 100%;
     left: 0;
-    transform: translateX(10px)
+    transform: translateX(10px);
   }
  
   .rightSlider{
     height: 100%;
     right: 0;
-    transform: translateX(-10px)
 
   }
 
   .slideItem-container{
-    flex: 0 0 25%;
+    flex: 0 0 30.3%;
     padding: 25px 10px;
   }
 
@@ -97,6 +96,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-size: cover;
     background-position: center center;
     aspect-ratio: 1/1;

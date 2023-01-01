@@ -35,41 +35,42 @@
   
   }
   
-  .doubleHero:hover{
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.1);
-    transition: 1000ms;
-  }
-  
-  .doubleHero-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.doubleHero:hover{
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.1);
+  transition: 1000ms;
+}
 
-  h1.doubleHero-item{
-    font-size: 3rem;
-  }
- 
-  h3.doubleHero-item{
-    font-size: 2rem;
+.doubleHero-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
-  
-  h4.doubleHero-item{
-    font-size: 1rem;
+h1.doubleHero-item{
+  font-size: 3rem;
+}
 
-  }
+h3.doubleHero-item{
+  font-size: 2rem;
 
-  .doubleHeroLabel{
-    font-size: 16px;
-    padding: 1rem 2rem;
-  }
-  
-  .doubleHero-item{
-    padding: 2rem;
-    color: white;
-  }
+}
+
+h4.doubleHero-item{
+  font-size: 1rem;
+
+}
+
+.doubleHeroLabel{
+  font-size: 16px;
+  padding: 1rem 2rem;
+}
+
+.doubleHero-item{
+  padding: 2rem;
+  color: white;
+}
+
 
   @media (max-width: 1360px) {
     .doubleHero-container{

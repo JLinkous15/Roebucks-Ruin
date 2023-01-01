@@ -14,7 +14,7 @@ const localUserObj = JSON.parse(localUser)
 useEffect(()=>{
     fetch(`http://localhost:8088/cocktails?userId=${localUserObj.id}`)
     .then(res=>res.json())
-    .then(setUserCocktails)
+    .then(res=>setUserCocktails(res.reverse()))
 }, [])
 
 //current posts via pagination

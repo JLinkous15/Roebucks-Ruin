@@ -1,0 +1,13 @@
+@import "../../index.css";
+
+.browseSelectors{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+}
+
+.browse-pageSelect{
+    position: absolute;
+    right: 0;
+}
