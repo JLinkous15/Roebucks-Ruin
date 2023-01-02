@@ -57,14 +57,23 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
     return <section className={`viewCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
             {/* A div for the cocktail in question, ingredients ordered by type (spirit first), notes, and about the bartender. Need a new component for this. */}
+            <a href={cocktail.image}>
                 <HeroCocktail cocktail={cocktail} theme={theme} types={thisCocktailsTypes}/>
-                <ul>
+            </a>
+                <ul className="view-cocktail-recipe">
                     {thisCocktailsIngredients.map((cocktail, index)=>
-                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.ingredient.name}
+                        <li key={index} id={index}>
+                            <h2 style={{
+                                display: "inline"}}>
+                                {cocktail.volume}
+                            </h2>
+                            <h3 style={{display: "inline"}}>
+                                {` ${cocktail?.ingredient.ingredientTypeId===3? "dashes":"ounces"} ${cocktail.ingredient.name}`}
+                            </h3>
                         </li>
                     )}
                 </ul>
-                <p>{cocktail.notes}</p>
+                <p className="view-cocktail-notes">{cocktail.notes}</p>
                 {cocktail.userId===localUserObj.id
                 ?<div className="viewCocktail-button">
                     <button 

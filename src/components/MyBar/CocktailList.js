@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 export const CocktailList = ({userCocktails}) => {
 
     return <div className="cocktail-list">
+                
             {userCocktails.map(cocktail => {
                 return (<div className="cocktail-list-item" key={cocktail.id}>
                             <Link to={`/mybar/${cocktail.id}/view`}
@@ -11,7 +12,6 @@ export const CocktailList = ({userCocktails}) => {
                                     <h3>{cocktail.name}</h3>
                             </Link>
                     </div>)
-                
             })}
     </div>
 }

@@ -54,9 +54,9 @@ export const Login = () => {
             style={{
                 backgroundImage: `url(${backgroundCocktail?backgroundCocktail.image:"https://res.cloudinary.com/dwbxabkg7/image/upload/v1670860377/OldFashioned_t3gi32.jpg"})`
             }} >
-                    <img alt="RR" src="../../icons/Roebucksruin_Lockup.svg" className="logo"/>
                     <div className="title">
-                    </div>
+                    <img alt="RR" src="../../icons/Roebucksruin_Lockup.svg" className="logo"/>
+                    
             <section className="form--container">
                 
                 <form className="form--login" onSubmit={handleLogin}>
@@ -76,6 +76,7 @@ export const Login = () => {
                     </fieldset>
                 </form>
             </section>
+            </div>
             <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
             </section>

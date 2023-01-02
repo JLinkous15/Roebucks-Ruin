@@ -27,7 +27,7 @@ const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
 }
 
-    return <section className={`createCocktail ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`mybar ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
                 <select 
                 className={`myBar-pageSelect ${theme?"dark":"light"}`}

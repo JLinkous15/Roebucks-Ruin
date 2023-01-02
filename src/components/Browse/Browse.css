@@ -1,5 +1,9 @@
 @import "../../index.css";
 
+.browse{
+    align-items: center;
+}
+
 .browseSelectors{
     display: flex;
     flex-direction: row;
@@ -8,6 +12,5 @@
 }
 
 .browse-pageSelect{
-    position: absolute;
-    right: 0;
+    align-self: end;
 }

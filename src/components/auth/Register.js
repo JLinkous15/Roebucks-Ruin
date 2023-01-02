@@ -82,6 +82,7 @@ export const Register = (props) => {
             textAlign: "center",
             backgroundImage: `url(${backgroundCocktail.image})`
          }}>
+            <div className="title-reg">
             <form 
             className="form--login"
             onSubmit={handleRegister}>
@@ -117,9 +118,10 @@ export const Register = (props) => {
                     <label htmlFor="email"> Dark Mode </label>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn" type="submit"> Register </button>
                 </fieldset>
             </form>
+            </div>
         </main>
     )
 }
