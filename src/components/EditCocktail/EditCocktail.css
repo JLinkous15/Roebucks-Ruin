@@ -4,8 +4,12 @@
     --recipe-width: 300px
 }
 
-.mybar{
-    display:flex;
+.createCocktail{
+    padding: 75px 75px;
+}
+
+.thebuild{
+    display: flex;
     flex-direction: row;
 }
 

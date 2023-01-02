@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
 
@@ -10,7 +10,26 @@ export const Register = (props) => {
         isStaff: false,
         darkMode: true
     })
+    const [cocktails, setCocktails] = useState([])
+    const [backgroundCocktail, setBackgroundCocktail] = useState({})
     let navigate = useNavigate()
+
+    useEffect(()=>{
+        const id = Math.floor(Math.random() * cocktails.length + 1)
+
+        fetch(`http://localhost:8088/cocktails`)
+        .then(res=>res.json())
+        .then((res)=>{setCocktails(res)})
+        
+    }, [])
+
+    useEffect(()=>{
+        const id = Math.floor(Math.random() * cocktails.length + 1)
+        fetch(`http://localhost:8088/cocktails?id=${id}`)
+            .then(res=>res.json())
+            .then((res)=>setBackgroundCocktail(res[0])
+)
+    }, [cocktails])
 
     const registerNewUser = () => {
         return fetch("http://localhost:8088/users", {
@@ -57,9 +76,16 @@ export const Register = (props) => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
-            <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Roebuck's Registration</h1>
+        <main 
+        className="container--login"
+        style={{ 
+            textAlign: "center",
+            backgroundImage: `url(${backgroundCocktail.image})`
+         }}>
+            <form 
+            className="form--login"
+            onSubmit={handleRegister}>
+                <h1>Registration</h1>
                 <fieldset>
                     <label htmlFor="fullName"> Full Name </label>
                     <input onChange={updateCustomer}

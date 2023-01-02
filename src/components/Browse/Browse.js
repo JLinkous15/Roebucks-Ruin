@@ -15,7 +15,7 @@ const [users, setUsers] = useState([])
 const [types, setTypes] = useState([])
 //search parameters
 const [searchType, setSearchType] = useState(0)
-const [searchSpirit, setSearchSpirit] = useState("")
+const [searchSpirit, setSearchSpirit] = useState(0)
 const [searchUser, setSearchUser] = useState(0)
 
 //Pagination
@@ -34,7 +34,7 @@ useEffect(()=>{
     .then(res=>res.json())
     .then(res=>setCocktailTypes(res))
 
-    fetch(`http://localhost:8088/cocktailIngredients?_expand=cocktail&_expand=ingredient`)
+    fetch(`http://localhost:8088/cocktailIngredients?_expand=ingredient`)
     .then(res=>res.json())
     .then(res=>setCocktailIngredients(res))
 
@@ -51,31 +51,49 @@ useEffect(()=>{
     .then(res=>setUsers(res))
 }, [])
 
-
+//this needs to be 1 long use effect that listens for changes in all 3 search fields, pushing objects to a fresh list each time.
+//logically, every change in state needs to affect the full list of cocktails. As such, filtering that particular list is the solution.
+//the hard part will be finding the tests to filter.
 useEffect(()=>{
-    const cocktailsCopy = [...cocktails]
-    const filteredCocktailsCopy = [...filteredCocktails]
+    let cocktailsCopy = [...cocktails]
     const cocktailTypesCopy = [...cocktailTypes]
-    const cocktailSpiritsCopy = [...spirits]
-    //these are all uniqe situations with unique data. Further conditionals are unnecessary.
-    if(searchUser && searchSpirit && searchType){
-
-    }else if(searchUser && searchSpirit && !searchType){ 
-        
-    }else if(searchUser && !searchSpirit && searchType){
-        
-    }else if(!searchUser && searchSpirit && searchType){
-        
-    }else if(searchUser && !searchSpirit && !searchType){
-
-    }else if(!searchUser && !searchSpirit && searchType){
-        
-    }else if(!searchUser && searchSpirit && !searchType){
-        
-    }else{
-        setFilteredCocktails(cocktailsCopy)
+    const ingredientsCopy = [...cocktailIngredients]
+    let cocktailList = []
+    if(searchUser){
+        cocktailsCopy = cocktailsCopy.filter(cocktail=>{
+            return cocktail.userId===searchUser
+        })
     }
+    if(searchSpirit){
+        //filter ingredients based on ingredientId
+        const filteredSpirit = ingredientsCopy.filter(spirit => {
+            return spirit.ingredientId === searchSpirit
+        })
+        //filter cocktailsCopy using cocktailId of filteredIngredients
+        if(!cocktailList.includes()){}
+        cocktailsCopy = cocktailsCopy.filter(cocktail => {
+            return filteredSpirit.some(spirit => {
+                return spirit.cocktailId === cocktail.id
+            })
+        })
+    }
+    //filtering type will have a very similar solution to filtering ingredients
+    if(searchType){
+        //filter types based on typeId
+        const filteredTypes = cocktailTypesCopy.filter(type => {
+            return type.typeId === searchType
+        })
+        //filter cocktailsCopy using cocktailId of filteredTypes
+        if(!cocktailList.includes()){}
+        cocktailsCopy = cocktailsCopy.filter(cocktail => {
+            return filteredTypes.some(type => {
+                return type.cocktailId === cocktail.id
+            })
+        })
+    }
+    setFilteredCocktails(cocktailsCopy)
 }, [searchUser, searchSpirit, searchType])
+
 
 //current posts via pagination
 const indexOfLastPost = currentPage * cocktailsPerPage
@@ -95,11 +113,7 @@ const paginate = (pageNumber) => {
                     className={theme?"dark":"light"}
                     onChange={(e)=>{
                         const value = parseInt(e.target.value)
-                        if(parseInt(value)){
-                            setSearchType(value)
-                        }else{
-                            setSearchType(0)
-                        }
+                        setSearchType(value)
                     }}>
                         <option value="0">Browse By Type</option>
                         {types.map(type=>{
@@ -119,7 +133,7 @@ const paginate = (pageNumber) => {
                         <option value="0">Browse By Spirit</option>
                         {spirits.map(spirit=>{
                             return <option
-                                    value={spirit.name}
+                                    value={spirit.id}
                                     key={spirit.id}>
                                         {spirit.name}
                                     </option>
@@ -129,11 +143,7 @@ const paginate = (pageNumber) => {
                     className={theme?"dark":"light"}
                     onChange={(e)=>{
                         const value = parseInt(e.target.value)
-                        if(parseInt(value)){
                             setSearchUser(value)
-                        }else{
-                            setSearchUser(0)
-                        }
                     }}>
                         <option value="0">Browse By User</option>
                         {users.map(user=>{

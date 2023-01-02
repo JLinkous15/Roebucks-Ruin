@@ -28,6 +28,12 @@
     margin: 10px;
 }
 
+.viewCocktail-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 @media (max-width: 966px) {
     .cocktail-list{
         display: block;

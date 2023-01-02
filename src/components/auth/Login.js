@@ -49,13 +49,13 @@ export const Login = () => {
     }
 
     return (
-        <main className="container--login"
+        <main 
+        className="container--login"
             style={{
                 backgroundImage: `url(${backgroundCocktail?backgroundCocktail.image:"https://res.cloudinary.com/dwbxabkg7/image/upload/v1670860377/OldFashioned_t3gi32.jpg"})`
-                }} >
-                    <img alt="RR" src="../../icons/Roebucksruin_Bug.svg" className="logo"/>
+            }} >
+                    <img alt="RR" src="../../icons/Roebucksruin_Lockup.svg" className="logo"/>
                     <div className="title">
-                        <h1 style={{color: "#ffffff"}}>Roebuck's Ruin</h1>
                     </div>
             <section className="form--container">
                 

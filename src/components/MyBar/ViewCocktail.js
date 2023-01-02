@@ -20,10 +20,6 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
         fetch(`http://localhost:8088/cocktails?id=${cocktailId}&_expand=user&_expand=method`)
         .then(res=>res.json())
         .then(res=>setCocktail(res[0]))
-        
-        fetch(`http://localhost:8088/cocktails?userId=${localUserObj.id}`)
-        .then(res=>res.json())
-        .then(res=>setUserCocktails(res))
 
         fetch(`http://localhost:8088/cocktailIngredients?cocktailId=${cocktailId}&_expand=ingredient`)
         .then(res=>res.json())
@@ -33,7 +29,13 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
         .then(res=>res.json())
         .then(setThisCocktailsTypes)
 
-    }, [, cocktailId])
+    }, [cocktailId])
+
+    useEffect(()=>{
+        fetch(`http://localhost:8088/cocktails?userId=${cocktail.userId}`)
+        .then(res=>res.json())
+        .then(res=>setUserCocktails(res.reverse()))
+    }, [cocktail])
 
     //Functions to turn array into delete promises
 
@@ -64,13 +66,13 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                 </ul>
                 <p>{cocktail.notes}</p>
                 {cocktail.userId===localUserObj.id
-                ?<>
+                ?<div className="viewCocktail-button">
                     <button 
                     className={`btn ${theme?"dark":"light"}`}
                     onClick={(e)=>{
                         navigate(`../mybar/${cocktailId}/edit`)
                     }}>
-                        Edit
+                        Edit Cocktail
                     </button>
                     <button 
                     className={`btn ${theme?"dark":"light"}`}
@@ -78,11 +80,11 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                         deleteCocktail()
                         navigate(`/mybar`)
                     }}>
-                        Delete
+                        Delete Cocktail
                     </button>
-                </>
+                </div>
                 :""}
-                <h3 style={{padding: "0 5vw"}}><Link to="/mybar" >See All:</Link></h3>
+                <h3 style={{padding: "0 5vw"}}>See More From This User:</h3>
                 <Carrousel cocktails={userCocktails} theme={theme}/>
             </section>
     
