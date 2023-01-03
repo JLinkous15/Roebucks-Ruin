@@ -97,10 +97,10 @@ useEffect(()=>{
     .then(setFilteredIngredientTypes)
 }, [currentIngredient.ingredientId])
 
-    return <section className={`componentContainer mybar ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
+    return <section className={`createCocktail componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
-            <div className="thebuild">
             <h2>Edit Your Cocktail</h2>
+            <div className="thebuild">
                 <form>
                     <br/>
                     <br/>
@@ -154,7 +154,6 @@ useEffect(()=>{
                     currentCocktailTypesArray={currentCocktailTypesArray}
                     userCocktailImage={userCocktailImage} />
                 </form>
-            </div>
             <div className="theRecipe">
                 <EditRecipe 
                 cocktail={cocktail}
@@ -165,6 +164,7 @@ useEffect(()=>{
                 setCurrentCocktailIngredients={setCurrentCocktailIngredients}
                 cocktailId={cocktailId}/>
             </div>
+        </div>
             
         </section>
 }

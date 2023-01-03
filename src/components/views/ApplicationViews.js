@@ -7,6 +7,8 @@ import { ViewCocktail } from "../MyBar/ViewCocktail"
 import { ArticleList } from "../Article/ArticleList"
 import { ArticleView } from "../Article/ArticleView"
 import { ArticleWrite } from "../Article/ArticleWrite"
+import { Browse } from "../Browse/Browse"
+import { ArticleEdit } from "../Article/ArticleEdit"
 
 
 export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, setMyBarMenu}) => {
@@ -17,6 +19,20 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 					<Outlet 
 					/>
 				}>
+					<Route path="/" element={
+						<Home 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
+					<Route path="/browse" element={
+						<Browse 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
 					<Route path="articles" element={
 						<ArticleList 
 						theme={theme}
@@ -38,8 +54,8 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 						setHamburger={setHamburger}
 						myBarMenu={myBarMenu}
 						setMyBarMenu={setMyBarMenu} />} />
-					<Route path="/" element={
-						<Home 
+					<Route path="articles/:articleId/edit" element={
+						<ArticleEdit 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}

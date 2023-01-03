@@ -4,8 +4,7 @@ import { DateConverter } from "../DateConverter"
 export const DoubleHero = ({array, theme}) => {
 
     return <>
-                {array.map(article=>{return <>
-                <Link to={`/articles/${article.id}/view`} className="doubleHero" style={{backgroundImage: `url(${article.image})`}} key={article.id}>
+                {array.map(article=>{return <Link to={`/articles/${article.id}/view`} className="doubleHero" style={{backgroundImage: `url(${article.image})`}} key={article.id}>
                     <div className="doubleHero-content">
                         <label 
                         htmlFor="doubleHero" 
@@ -15,7 +14,7 @@ export const DoubleHero = ({array, theme}) => {
                         <h4 className="doubleHero-item"><DateConverter date={article.date} /> | by: {article?.user?.handle}</h4>
                     </div>
                 </Link>
-                </>})}
+                })}
                
         </>
 }

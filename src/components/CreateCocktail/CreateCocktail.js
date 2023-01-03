@@ -74,8 +74,8 @@ useEffect(()=>{
 
     return <section className={`createCocktail ${theme?"componentContainer light":"componentContainer dark"}`} onClick={(e)=>{setHamburger(true)
         setMyBarMenu(true)}}>
-            <div className="thebuild">
             <h2>Create a Cocktail</h2>
+            <div className="thebuild">
                 <form>
                     <br/>
                     <br/>
@@ -127,19 +127,18 @@ useEffect(()=>{
                     currentCocktailIngredients={currentCocktailIngredients}
                     currentCocktailTypesArray={currentCocktailTypesArray}/>
                 </form>
+                <div className="theRecipe">
+                    <Recipe 
+                    cocktail={cocktail}
+                    currentCocktailTypesArray={currentCocktailTypesArray}
+                    theme={theme}
+                    setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
+                    currentCocktailIngredients={currentCocktailIngredients}
+                    setCurrentCocktailIngredients={setCurrentCocktailIngredients}
+                    image={image}
+                    setImage={setImage}/>
+                </div>
             </div>
-            <div className="theRecipe">
-                <Recipe 
-                cocktail={cocktail}
-                currentCocktailTypesArray={currentCocktailTypesArray}
-                theme={theme}
-                setCurrentCocktailTypesArray={setCurrentCocktailTypesArray}
-                currentCocktailIngredients={currentCocktailIngredients}
-                setCurrentCocktailIngredients={setCurrentCocktailIngredients}
-                image={image}
-                setImage={setImage}/>
-            </div>
-            
         </section>
 }
 

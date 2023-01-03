@@ -24,7 +24,7 @@ export const Recipe = (
 
                     {currentCocktailIngredients
                     ?currentCocktailIngredients.map((cocktail, index)=>
-                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredientTypeId===3? "dashes":"ounces"} {cocktail.ingredient.name}
+                        <li key={index} id={index}>{cocktail.volume} {cocktail.ingredient.ingredientTypeId===3? "dashes":"ounces"} {cocktail.ingredient.name}
                             <button className={`btn ${theme?"dark":"light"}`}
                             onClick={(e)=>{
                                 const copy = [...currentCocktailIngredients]

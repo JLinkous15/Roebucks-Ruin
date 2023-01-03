@@ -1,3 +1,9 @@
+@import "../../index.css";
+
+.mybar{
+    align-items: center;
+}
+
 .myBar-pageSelect{
     width: 5rem;
     align-self: end;
@@ -5,8 +11,10 @@
 
 .cocktail-list{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
+    width: 80%;
+    margin-bottom: 50px;
 }
 
 .cocktail-list-item{
@@ -28,9 +36,27 @@
     margin: 10px;
 }
 
+.viewCocktail-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
 @media (max-width: 966px) {
     .cocktail-list{
         display: block;
     }
     
+}
+
+.view-cocktail-recipe{
+    align-self: center;
+    margin-bottom: 50px;
+}
+
+.view-cocktail-notes{
+    width: 75%;
+    align-self: center;
+    margin-bottom: 50px;
 }

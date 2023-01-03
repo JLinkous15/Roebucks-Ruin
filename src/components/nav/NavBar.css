@@ -23,12 +23,12 @@
 }
 
 .logo_dark{
-   width: 3.75rem;
+    width: 3.75rem;
     background-color: #fff;
     border-radius: 2rem;
     border: solid 6px var(--background-light);
     padding: .5rem;
-    transition: 500ms ease-in-out;
+    transition: transform 300ms ease-in-out;
 }
 
 .logo_light{
@@ -37,7 +37,7 @@
     border-radius: 2rem;
     border: solid 6px var(--background-dark);
     padding: .5rem;
-    transition: 500ms ease-in-out;
+    transition: transform 300ms ease-in-out;
 }
 
 .navbar__item {
@@ -95,7 +95,7 @@
     width: 225px;
     transform: translateX(100%);
     z-index: 999;
-    transition: 500ms ease-in-out;
+    transition: 300ms ease-in-out;
 }
 
 .mybarmenu_menu_container{
@@ -104,7 +104,7 @@
     right: 0;
     transform: translateX(100%);
     width: 225px;
-    transition: 500ms ease-in-out;
+    transition: 300ms ease-in-out;
 }
 
 .active{

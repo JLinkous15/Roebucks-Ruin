@@ -39,7 +39,8 @@ export const RoebucksRuin = () => {
 					setMyBarMenu={setMyBarMenu}/>
 					<Footer 
 					setHamburger={setHamburger}
-					setMyBarMenu={setMyBarMenu}/>
+					setMyBarMenu={setMyBarMenu}
+					theme={theme}/>
 					</>
 				</Authorized>
 				

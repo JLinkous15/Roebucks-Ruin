@@ -1,13 +1,14 @@
 @import "../../index.css";
 
 .footer-container{
-    background-color: black;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     list-style: none;
     text-decoration: none;
     position: absolute;
     width: 100%;
-    height: 17rem;
+    height: 15rem;
 }
 
 ul {

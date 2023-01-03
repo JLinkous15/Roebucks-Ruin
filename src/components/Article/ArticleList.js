@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Hero } from "../Hero"
-
+import { FaRegEdit } from "react-icons/fa"
 
 export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
     const [articles, setArticles] = useState([])
@@ -13,26 +13,22 @@ export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
         fetch(`http://localhost:8088/articles?_expand=articleTopic`)
         .then(res=>res.json())
         .then((res)=>{
-            const copy = res.sort((a, b)=>{
-                if(a.id > b.id){
-                    return -1
-                }else if (a.id < b.id){
-                    return 1 
-                }
-            return 0}
-            )
-            setArticles(copy)
+            setArticles(res.reverse())
         })
     }, [])
 
-    console.log(articles)
- 
     return (<section className={`ArticleList componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
             setMyBarMenu(true)}}>
-
+                <div className="article-container">
                 {localUserObj.staff
-                    ?<Link to="/articles/articlewrite" className={theme?"light":"dark"}>Write a new article.</Link>
+                    ?<button className={`article-btn btn ${theme?"dark":"light"}`} onClick={()=>navigate("/articles/articlewrite")}> <FaRegEdit /></button>
                     :""}
-                {articles.map(article=>{return <Hero article={article}/>})}
+                {articles.map(article=>{
+                return <Link to={`/articles/${article.id}/view`}
+                key={article.id}
+                className="articleHero">
+                    <Hero article={article}/>
+                </Link>})}
+                </div>
             </section>)
 }

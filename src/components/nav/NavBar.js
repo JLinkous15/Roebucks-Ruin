@@ -27,7 +27,12 @@ export const NavBar = ({
     return (
         <div className="nav">
             <ul className={`navbar ${theme?"dark":"light"}`}>
-                <li className="navbar_item">
+                <li 
+                className="navbar_item"
+                onClick={()=>{
+                    setHamburger(true)
+                    setMyBarMenu(true)
+                }}>
                     <Link to="/"><img className={`navbar_image ${theme?"logo_light":"logo_dark"}`} alt="home" src="../../icons/Roebucksruin_Bug.svg"/></Link>
                 </li>
                 <div className="navbar_item right">

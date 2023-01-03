@@ -1,0 +1,16 @@
+@import "../../index.css";
+
+.browse{
+    align-items: center;
+}
+
+.browseSelectors{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+}
+
+.browse-pageSelect{
+    align-self: end;
+}
