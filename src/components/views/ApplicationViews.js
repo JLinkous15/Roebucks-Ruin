@@ -8,6 +8,7 @@ import { ArticleList } from "../Article/ArticleList"
 import { ArticleView } from "../Article/ArticleView"
 import { ArticleWrite } from "../Article/ArticleWrite"
 import { Browse } from "../Browse/Browse"
+import { ArticleEdit } from "../Article/ArticleEdit"
 
 
 export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, setMyBarMenu}) => {
@@ -48,6 +49,13 @@ export const ApplicationViews = ({theme, hamburger, setHamburger, myBarMenu, set
 						setMyBarMenu={setMyBarMenu} />} />
 					<Route path="articles/:articleId/view" element={
 						<ArticleView 
+						theme={theme}
+						hamburger={hamburger}
+						setHamburger={setHamburger}
+						myBarMenu={myBarMenu}
+						setMyBarMenu={setMyBarMenu} />} />
+					<Route path="articles/:articleId/edit" element={
+						<ArticleEdit 
 						theme={theme}
 						hamburger={hamburger}
 						setHamburger={setHamburger}

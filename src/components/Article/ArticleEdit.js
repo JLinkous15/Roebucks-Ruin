@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { ArticleSubmitButton } from "./ArticleSubmitButton"
+import { useParams } from "react-router-dom"
 import "./Article.css"
 import "../../index.css"
+import { ArticleEditButton } from "./ArticleEditButton"
 
-export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
+export const ArticleEdit = ({ theme, setHamburger, setMyBarMenu }) => {
     const [image, setImage] = useState({})
     const [imageString, setImageString] = useState("")
     const [articleTopics, setArticleTopics] = useState([])
@@ -18,25 +19,33 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
         articleTopicId: "",
         date: ""
     })
-
-    const localUser = localStorage.getItem("roebucks_user")
-    const localUserObj = JSON.parse(localUser)
-
-    const date = new Date()
+    const {articleId} = useParams()
 
     useEffect(()=>{
-    fetch(`http://localhost:8088/articleTopics`)
-    .then(res=>res.json())
-    .then(setArticleTopics)
-    
-    fetch(`http://localhost:8088/users?id=${localUserObj.id}`)
-    .then(res=>res.json())
-    .then((res)=>setUser(res[0]))
-
+        fetch(`http://localhost:8088/articleTopics`)
+        .then(res=>res.json())
+        .then(setArticleTopics)
     }, [])
+    
+    useEffect(()=>{
+        fetch(`http://localhost:8088/articles?id=${articleId}&_expand=articleTopic`)
+        .then(res=>res.json())
+        .then((res)=>{
+            setArticleTopicName(res[0]?.articleTopic.name)
+            delete res[0].articleTopic
+            setArticle(res[0])
+        })
+    }, [articleId])
 
     useEffect(()=>{
+    fetch(`http://localhost:8088/users?id=${article.userId}`)
+    .then(res=>res.json())
+    .then(res=>{setUser(res[0])
+        setImageString(article.image)
+    })
+    }, [article])
 
+    useEffect(()=>{
     if(image.name){
         const fileReader = new FileReader()
         fileReader.readAsDataURL(image)
@@ -44,29 +53,30 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
         fileReader.addEventListener("load", ()=>{
             const url = fileReader.result
             setImageString(url)
-    })}
+        })
+    }
     },[image])
-
+console.log(article)
     return <section 
-    className={`article componentContainer ${theme?"light":"dark"}`} 
+    className={`componentContainer ${theme?"light":"dark"}`} 
     onClick={(e)=>{setHamburger(true)
                     setMyBarMenu(true)}}>
-            <form className={`article-form`}>
+            <form className={`blog-form`}>
             <label htmlFor="topic">Topic</label>
                 <fieldset className={`blog-form-fieldset`}>
                     <select 
                         className={theme?"dark":"light"}
                         style={{width: "25rem"}}
+                        value={article.articleTopicId}
                         onChange={(e)=>{
                             const copy = {...article}
-                            const [topicId, topicName] = e.target.value.split("--")
-                            copy.articleTopicId = parseInt(topicId)
+                            const topicId = parseInt(e.target.value)
+                            copy.articleTopicId = topicId
                             setArticle(copy)
-                            setArticleTopicName(topicName)
                         }}>
                             <option value="0">Choose a Topic</option>
                             {articleTopics.map((topic, index)=>{
-                                return <option key={index} value={`${topic.id}--${topic.name}`}>{topic.name}</option>
+                                return <option key={index} value={topic.id}>{topic.name}</option>
                             })}
                         </select>
                 </fieldset>
@@ -76,6 +86,7 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
                     <input type="text" 
                         className={theme?"dark":"light"}
                         style={{width: "25rem"}}
+                        defaultValue={article.title}
                         onChange={(e)=>{
                             const copy = {...article}
                             copy.title = e.target.value
@@ -88,6 +99,7 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
                     <input type="text" 
                         className={theme?"dark":"light"}
                         style={{width: "25rem"}}
+                        defaultValue={article.subTitle}
                         onChange={(e)=>{
                             const copy = {...article}
                             copy.subTitle = e.target.value
@@ -111,6 +123,7 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
                     <textarea
                         className={theme?"dark":"light"}
                         style={{width: "50rem", height:"33vh"}}
+                        defaultValue={article.content}
                         onChange={(e)=>{
                             const copy = {...article}
                             copy.content = e.target.value
@@ -118,13 +131,13 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
                         }} />
                 </fieldset>
                 
-            <ArticleSubmitButton
+            <ArticleEditButton
             theme={theme}
             article={article}
-            image={image} />
+            image={image}
+            imageString={imageString} />
             </form>
 
-            <div className="article-preview">
             {imageString
                 ?<div className="hero" style={{backgroundImage: `url(${imageString})`}} >
                     <div className="hero-content">
@@ -134,14 +147,13 @@ export const ArticleWrite = ({theme, setHamburger, setMyBarMenu}) => {
                         className={`heroLabel ${theme?"dark":"light"}`}>{`${articleTopicName}`}</label>:""}
                         <h1 className="hero-item">{article.title}</h1>
                         <h3 className="hero-item">{article.subTitle}</h3>
-                        <h4 className="hero-item">{date.toString()} | by : {user.handle}</h4>
+                        <h4 className="hero-item">{article.date} | by : {user.handle}</h4>
                     </div>
-                
                 </div>
-            :"Preview"}
-            <p className="article-content">
+            :""}
+            <p className="blog-content">
                 {article.content}
             </p>
-            </div>
+
         </section>
 }

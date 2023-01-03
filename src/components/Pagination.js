@@ -6,14 +6,14 @@ export const Pagination = ( {cocktailsPerPage, totalCocktails, paginate, theme} 
         pageNumbers.push(i)
     }
     return <ul className="page-list">
-                {
-                    [pageNumbers.map(number => (
+            {
+                [pageNumbers.map(number => (
+                    <Link className={`page-item-link ${theme?"dark":"light"}`} onClick={()=>paginate(number)}>
                         <li key={number} className={`page-item ${theme?"dark":"light"}`}>
-                            <Link className={`page-item-link ${theme?"dark":"light"}`} onClick={()=>paginate(number)}>
-                                {number}
-                            </Link>
+                            {number}
                         </li>
-                    ))]
-                }
+                    </Link>
+                ))]
+            }
     </ul>
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Hero } from "../Hero"
-
+import { FaRegEdit } from "react-icons/fa"
 
 export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
     const [articles, setArticles] = useState([])
@@ -16,19 +16,19 @@ export const ArticleList = ({theme, setHamburger, setMyBarMenu}) => {
             setArticles(res.reverse())
         })
     }, [])
- 
+
     return (<section className={`ArticleList componentContainer ${theme?"light":"dark"}`} onClick={(e)=>{setHamburger(true)
             setMyBarMenu(true)}}>
-
+                <div className="article-container">
                 {localUserObj.staff
-                    ?<Link to="/articles/articlewrite" className={theme?"light":"dark"}>Write a new article.</Link>
+                    ?<button className={`article-btn btn ${theme?"dark":"light"}`} onClick={()=>navigate("/articles/articlewrite")}> <FaRegEdit /></button>
                     :""}
                 {articles.map(article=>{
                 return <Link to={`/articles/${article.id}/view`}
-                style={{width: "100%",
-                marginBottom: "25px"}}
-                key={article.id}>
+                key={article.id}
+                className="articleHero">
                     <Hero article={article}/>
                 </Link>})}
+                </div>
             </section>)
 }

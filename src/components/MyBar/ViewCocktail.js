@@ -48,9 +48,9 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
 
     const deleteCocktail = (e) => {
         e.preventDefault()
-        Promise.all(thisCocktailsIngredients.map(ingredient=>deleteCocktailIngredients(ingredient)))
-        Promise.all(thisCocktailsTypes.map(ingredient=>deleteCocktailTypes(ingredient)))
         fetch(`http://localhost:8088/cocktails/${cocktailId}`, {method: "DELETE"})
+        // Promise.all(thisCocktailsIngredients.map(ingredient=>deleteCocktailIngredients(ingredient)))
+        // Promise.all(thisCocktailsTypes.map(ingredient=>deleteCocktailTypes(ingredient)))
         setTimeout(()=>{navigate(`/mybar`)}, 2000)
     }
     
@@ -85,8 +85,8 @@ export const ViewCocktail = ({theme, hamburger, setHamburger, setMyBarMenu}) => 
                     </button>
                     <button 
                     className={`btn ${theme?"dark":"light"}`}
-                    onClick={()=>{
-                        deleteCocktail()
+                    onClick={(e)=>{
+                        deleteCocktail(e)
                         navigate(`/mybar`)
                     }}>
                         Delete Cocktail
