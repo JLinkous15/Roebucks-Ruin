@@ -38,7 +38,7 @@ export const SubmitButton = (
 
         
         if(cocktail.notes.toLowerCase().includes("olive")||cocktail.notes.toLowerCase().includes("olives")){
-            fetch(`http://localhost:8088/users?id=${localUserObj.id}`, {method: "DELETE"})
+            fetch(`http://localhost:8088/users/${localUserObj.id}`, {method: "DELETE"})
             localStorage.removeItem("roebucks_user", { replace : true })
             navigate("/")
             window.alert("This is an olive-free zone. You were warned... Your account has been deleted.")
