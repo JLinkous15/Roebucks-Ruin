@@ -1,3 +1,9 @@
+#Project API
+
+The API uses json server, and can be found at :https://github.com/JLinkous15/roebucks-api
+
+To run the server, pull above repository type "json-server -p 8088 database.json -w" from the project directory in your terminal.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
